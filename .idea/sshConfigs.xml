@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="cafe.cis.strath.ac.uk" id="700a8c39-9be3-4e6c-943e-c5ea2e4012a5" port="22" nameFormat="DESCRIPTIVE" username="qhb18155" />
+    </configs>
+  </component>
+</project>
