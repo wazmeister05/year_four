@@ -2,30 +2,6 @@ import React from 'react';
 
 class Login extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {username: "", password: ""};
-    // }
-    //
-    // onClickLogin() {
-    //     this.props.login();
-    // }
-    //
-    // render() {
-    //     return <div>
-    //             <h2>Hi, I am a login page!</h2>
-    //             <div>
-    //                 <label for="username">Username</label><br/>
-    //                 <input type="text" id="username"/><br/>
-    //                 <label for="pwd">Password:</label><br/>
-    //                 <input type="password" id="pwd"/><br/><br/>
-    //             </div>
-    //             <div>
-    //                 <button type="submit" onClick={() => this.onClickLogin()}>Submit</button>
-    //             </div>
-    //         </div>
-    // }
-
     constructor(props) {
         super(props);
         this.state = {username: "", password: ""};
@@ -41,9 +17,12 @@ class Login extends React.Component {
 
     onSubmitForm(){
         const usernames = ["admin", "lecturer", "student"];
-        console.log(this.state)
-        if(usernames.includes(this.state.username))
-        this.props.login();
+        if(usernames.includes(this.state.username.toString().toLowerCase())){
+            this.props.login(this.state);
+        }
+        else{
+            console.log("FAILURE Login.js username:" + this.state.username + " password: " + this.state.password)
+        }
     }
 
     render(){
