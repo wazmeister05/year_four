@@ -1,9 +1,23 @@
 import React from 'react';
+import { stack as Menu } from 'react-burger-menu';
+import '../css/Sidebar.css';
+import '../css/Stylesheet.css';
 
-class Sidebar extends React.Component {
-    render() {
-        return <h2>Hi, I am a sidebar!</h2>;
-    }
-}
-
-export default Sidebar;
+export default props => {
+    return(
+            <Menu width={200} isOpen={false}>
+                <a className="menu-item" href="/">
+                    Home
+                </a>
+                <a className="menu-item" href="/UserPicture">
+                    User Picture
+                </a>
+                <a className="menu-item" href="/Calendar">
+                    Calendar
+                </a>
+                <a className="menu-item" href="/Login">
+                    Log Out
+                </a>
+            </Menu>
+    );
+};
