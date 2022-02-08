@@ -33,10 +33,24 @@
     opacity: 0.80;
 }
 
-#login{
+#login {
     position: fixed;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-image: url('https://besthqwallpapers.com/Temp/6-2-2022/sunset-mountain-landscape-winter-alberta-canada-besthqwallpapers.com-1920x1080.jpg');
+}
+
+.calendar {
+    width: 250px;
+}
+
+.calendar .days button {
+    width: calc(100% / 7);
+}
+
+#sidebar-cal{
+    position: absolute;
+    bottom: 0;
+    width: 75%;
 }

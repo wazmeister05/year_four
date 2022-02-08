@@ -7,7 +7,7 @@ class Main extends React.Component {
     state = {logged_in: false, user_details: null};
 
     login = (login_details) => {
-        console.log("Main.js username:" + login_details.username + ", password:" + login_details.password);
+        //console.log("Main.js username:" + login_details.username + ", password:" + login_details.password);
         this.setState({logged_in: true, user_details: login_details});
     }
 

@@ -29,10 +29,7 @@ class Login extends React.Component {
 
     render(){
         const { items } = this.state;
-
-
         return(
-
             <div id="login">
                 <div className="container"><br/>
                     <div id="login-row" className="row justify-content-center align-items-center">

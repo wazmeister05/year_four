@@ -18,7 +18,7 @@ class Home extends React.Component {
             <div class="container-fluid" className="Home" id="outer-container">
                 <div className="row">
                     <div className="col-md-1">
-                        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+                        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} user={user_type}/>
                     </div>
                     <div id="page-wrap" className="col-md-11" id="welcome">
                         <div><h1>Welcome, {user_type}</h1></div>
