@@ -19,8 +19,6 @@ class Main extends React.Component {
             return <Login login={this.login}/>;
         }
     }
-
-
 }
 
 export default Main;

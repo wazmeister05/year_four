@@ -1,8 +1,8 @@
 import React from 'react';
 import Sidebar from "./Sidebar";
-import StudentLaunchpad from "./StudentLaunchpad";
-import MaintenanceLaunchpad from "./MaintenanceLaunchpad";
-import LecturerLaunchpad from "./LecturerLaunchpad";
+import StudentUser from "./StudentUser";
+import AdminUser from "./AdminUser";
+import TeacherUser from "./TeacherUser";
 import '../css/Stylesheet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,11 +24,11 @@ class Home extends React.Component {
                         <div><h1>Welcome, {user_type}</h1></div>
                         <div>
                             {user_type === 'admin' ? (
-                                <MaintenanceLaunchpad/>
+                                <AdminUser/>
                             ): user_type === 'student' ? (
-                                <StudentLaunchpad/>
-                            ): user_type === 'lecturer' ? (
-                                <LecturerLaunchpad/>
+                                <StudentUser/>
+                            ): user_type === 'teacher' ? (
+                                <TeacherUser/>
                             ):(
                                 <Home/>
                             )}

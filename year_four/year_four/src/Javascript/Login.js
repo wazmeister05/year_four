@@ -18,7 +18,7 @@ class Login extends React.Component {
     }
 
     onSubmitForm(){
-        const usernames = ["admin", "lecturer", "student"];
+        const usernames = ["admin", "teacher", "student"];
         if(usernames.includes(this.state.username.toString().toLowerCase())){
             this.props.login(this.state);
         }
