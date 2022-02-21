@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Course from './Course';
 import ClassSelection from "./ClassSelection";
 
-class StudentUser extends React.Component {
+class RegularUser extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             code: "",
-            page: "studentCourseSelection"
+            page: "courseSelection"
         };
     }
 
@@ -19,13 +19,13 @@ class StudentUser extends React.Component {
     }
 
     render() {
-        switch(this.state.page){
-            case "studentCourseSelection":
+        switch (this.state.page) {
+            case "courseSelection":
                 return <ClassSelection setCourse={this.setCourse}/>
             case "chosenCourse":
-                return <Course code={this.state.code} />
+                return <Course code={this.state.code}/>
         }
     }
 }
 
-export default StudentUser;
+export default RegularUser;

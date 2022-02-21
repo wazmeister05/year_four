@@ -4,6 +4,7 @@ import '../css/Sidebar.css';
 import '../css/Stylesheet.css';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import Home from './Home';
 
 class Sidebar extends React.Component{
 

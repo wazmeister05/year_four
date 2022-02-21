@@ -16,7 +16,6 @@ class ClassSelection extends React.Component{
             <div>
                 <br/>
                 <div className={"text-center"} id={"courseChoice"}>
-                    <h2>Select class</h2><br/>
                     <div>
                         {courseCodes.map(code => (
                             <button onClick={() => {
