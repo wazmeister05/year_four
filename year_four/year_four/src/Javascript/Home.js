@@ -30,7 +30,7 @@ class Home extends React.Component {
                             ): this.state.user_details.username === 'student' || this.state.user_details.username === 'teacher' ? (
                                 <RegularUser/>
                             ):(
-                                <Home/>
+                                <h1>ERROR</h1>
                             )}
                         </div>
                     </div>

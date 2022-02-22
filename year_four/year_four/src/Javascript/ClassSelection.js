@@ -8,6 +8,7 @@ class ClassSelection extends React.Component{
 
     getCourseCodes(){
         return ["CS451", "CS432"];
+
     }
 
     render(){
