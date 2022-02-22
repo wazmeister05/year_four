@@ -4,7 +4,7 @@ import '../css/Sidebar.css';
 import '../css/Stylesheet.css';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import Home from './Home';
+import Main from './Main';
 
 class Sidebar extends React.Component{
 
@@ -13,11 +13,13 @@ class Sidebar extends React.Component{
     }
 
     render() {
-        const user_type = this.props.user;
         return (
             <Menu width={300} isOpen={false}>
+                <h1 className="text-center">{this.props.user.username}</h1>
+                {console.log(this.props.user)}
+                {console.log(this.props.user.username)}
                 <div>
-                    {user_type === 'admin' ? (
+                    {this.props.user === 'admin' ? (
                         <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/maintenance-512.png"
                              className="menu-item user-image" alt="User picture"/>
                     ) : (
@@ -31,8 +33,12 @@ class Sidebar extends React.Component{
                     <Calendar />
                 </div>
 
-                <a className="menu-item" href="/">
-                    Home
+                <a className="menu-item" >
+
+                    <button className="sidebarButton" onClick={() => {
+                        return <Main user_returned={this.props.user} />
+                        }}>Home
+                    </button>
                 </a>
 
                 <a className="menu-item" href="/Login">

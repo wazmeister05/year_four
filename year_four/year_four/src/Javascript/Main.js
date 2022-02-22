@@ -4,6 +4,11 @@ import Home from './Home';
 
 class Main extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state={user_returned: this.props.user}
+    }
+
     state = {logged_in: false, user_details: null};
 
     login = (login_details) => {
@@ -12,8 +17,9 @@ class Main extends React.Component {
     }
 
     render() {
+        console.log(this.state.logged_in);
         if(this.state.logged_in){
-            return <Home user={this.state.user_details.username}/>;
+            return <Home user={this.state.user_details}/>;
         }
         else {
             return <Login login={this.login}/>;
