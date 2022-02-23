@@ -18,24 +18,13 @@ class Home extends React.Component {
 
         return (
             <div class="container-fluid" className="Home" id="outer-container">
-                <div className="row">
-                    <div className="col-md-1">
-                        <Sidebar navigate pageWrapId={'page-wrap'} outerContainerId={'outer-container'} user={this.state.user_details}/>
-                    </div>
-                    <div id="page-wrap" className="col-md-11" id="welcome">
-                        <div><h1>Welcome, {this.state.user_details.username}</h1></div>
-                        <div>
-                            {this.state.user_details.username === 'admin' ? (
-                                <AdminUser/>
-                            ): this.state.user_details.username === 'student' || this.state.user_details.username === 'teacher' ? (
-                                <RegularUser/>
-                            ):(
-                                <h1>ERROR</h1>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
+                {this.state.user_details.username === 'admin' ? (
+                    <AdminUser/>
+                ): this.state.user_details.username === 'student' || this.state.user_details.username === 'teacher' ? (
+                    <RegularUser user_details={this.state.user_details}/>
+                ):(
+                    <h1>ERROR</h1>
+                )}
             </div>
         );
     }

@@ -36,7 +36,7 @@ class Sidebar extends React.Component{
                 <a className="menu-item" >
 
                     <button className="sidebarButton" onClick={() => {
-                        return <Main user_returned={this.props.user} />
+                        this.props.setPage("home")
                         }}>Home
                     </button>
                 </a>
