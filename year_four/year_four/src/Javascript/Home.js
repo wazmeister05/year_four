@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from "./Sidebar";
 import RegularUser from "./RegularUser";
 import AdminUser from "./AdminUser";
 import '../css/Stylesheet.css';
@@ -17,7 +16,7 @@ class Home extends React.Component {
     render() {
 
         return (
-            <div class="container-fluid" className="Home" id="outer-container">
+            <div className="container-fluid Home" id="outer-container">
                 {this.state.user_details.username === 'admin' ? (
                     <AdminUser/>
                 ): this.state.user_details.username === 'student' || this.state.user_details.username === 'teacher' ? (
@@ -25,6 +24,7 @@ class Home extends React.Component {
                 ):(
                     <h1>ERROR</h1>
                 )}
+
             </div>
         );
     }
