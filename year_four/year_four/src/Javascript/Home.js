@@ -18,7 +18,7 @@ class Home extends React.Component {
         return (
             <div className="container-fluid Home" id="outer-container">
                 {this.state.user_details.username === 'admin' ? (
-                    <AdminUser/>
+                    <AdminUser user_details={this.state.user_details}/>
                 ): this.state.user_details.username === 'student' || this.state.user_details.username === 'teacher' ? (
                     <RegularUser user_details={this.state.user_details}/>
                 ):(

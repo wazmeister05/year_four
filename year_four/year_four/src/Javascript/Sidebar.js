@@ -36,12 +36,19 @@ class Sidebar extends React.Component{
                         }}>Home
                     </button>
                 </a>
-
-                <a className="menu-item" href="/Login">
-                    Log Out
+                <a>
+                    <button onClick={() => {
+                        this.logout()
+                    }}>Log Out</button>
                 </a>
+
             </Menu>
         );
+    }
+
+    logout() {
+        localStorage.clear();
+        window.location.href = '/';
     }
 }
 

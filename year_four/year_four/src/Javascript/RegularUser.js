@@ -36,13 +36,8 @@ class RegularUser extends React.Component {
         }
     }
 
-    // test = () => {
-    //     fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users')
-    //         .then(response => response.json())
-    //         .then(data => this.setState({database: data}));
-    // }
-    testLocal = () => {
-        fetch('http://localhost:3007/users', {
+    test = () => {
+        fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users', {
             mode: 'no-cors'
         })
             .then(response => {
@@ -70,8 +65,7 @@ class RegularUser extends React.Component {
                     <div>
                         <p>
                             test
-                            {this.testLocal()}
-                            {JSON.parse(this.state.database)}
+                            {this.test()}
                         </p>
                     </div>
                 </div>
