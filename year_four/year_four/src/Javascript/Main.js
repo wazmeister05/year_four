@@ -17,13 +17,14 @@ class Main extends React.Component {
     }
 
     render() {
-        console.log(this.state.logged_in);
+        //console.log(this.state.logged_in);
         if(this.state.logged_in){
             return <Home user={this.state.user_details}/>;
         }
         else {
             return <Login login={this.login}/>;
         }
+
     }
 }
 

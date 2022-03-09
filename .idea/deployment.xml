@@ -5,7 +5,7 @@
       <paths name="Cafe">
         <serverdata>
           <mappings>
-            <mapping deploy="year_four" local="$PROJECT_DIR$" web="year_four" />
+            <mapping deploy="/" local="$PROJECT_DIR$/year_four/year_four/build" web="year_four" />
           </mappings>
         </serverdata>
       </paths>

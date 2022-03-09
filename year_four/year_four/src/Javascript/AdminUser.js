@@ -59,28 +59,15 @@ class AdminUser extends React.Component {
             });
         }
 
-        const url = 'https://devweb2021.cis.strath.ac.uk/~qhb18155/contacts.php'
-        axios.get(url).then(response => response.data)
-            .then((data) => {
-                this.setState({contacts: data})
-                console.log(this.state.contacts)
-            })
+        const fetchData = async () => {
+            const response = await fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users')
+                .then(resp => resp.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error));
+        };
+        fetchData().then(r => console.log(r));
+        //console.log(this.state)
 
-        // const fetchData = async () => {
-        //     const response = await fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users', {
-        //         mode: 'no-cors'
-        //     }).then(function(response){
-        //         return response.json();
-        //     }).then(function(data){
-        //          console.log(data);
-        //         }).catch(error => console.log(error));
-        //     //console.log(response);
-        //     //const { data } = await response;
-        //     // console.log(data.toString());
-        //     // this.setState(data);
-        // }
-        // fetchData().then(r => console.log(r));
-        // console.log(this.state)
     }
 
     // test() {

@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import Main from './Javascript/Main';
+//import * as serviceWorker from "./Javascript/serviceWorker";
 
 ReactDOM.render(
-    <React.StrictMode>
+    //<React.StrictMode>
+    <BrowserRouter>
         <Main/>
-    </React.StrictMode>,
+    </BrowserRouter>,
+    //</React.StrictMode>,
     document.getElementById('root')
 );
+//serviceWorker.unregister();
