@@ -1,13 +1,14 @@
 import React from 'react';
 import '../css/Stylesheet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavbarPanel from "./NavbarPanel";
 
 class TeacherUser extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            code: ""
+            code: "",
         };
     }
 
@@ -18,6 +19,8 @@ class TeacherUser extends React.Component {
     render() {
         return(
             <div>
+                <NavbarPanel type={this.props.user_details.username}/>
+
                 <br/>
                 <div className={"text-center"} id={"courseChoice"}>
                     <h2>Select class</h2><br/>

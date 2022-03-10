@@ -62,7 +62,8 @@
 
 .whole{
     opacity:1;
-    background-color: #212529;
+    background-color: powderblue;
+    /*background-color: #212529;*/
     position:fixed;
     width:100%;
     height:100%;

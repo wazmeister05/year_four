@@ -5,29 +5,22 @@ import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Button} from "bootstrap";
+import NavbarPanel from "./NavbarPanel";
 
 class AdminUser extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            contacts: ""
+            contacts: "",
+            pageType: "Admin Panel"
         };
     }
 
     render() {
         return (
             <div>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                    <Navbar.Brand id={'navbarLeft'} href="#">Admin Panel</Navbar.Brand>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <button className={'btn btn-danger'} onClick={() => {
-                                this.logout();
-                            }}>Log Out</button>
-                        </Nav.Link>
-                    </Nav.Item>
-                </Navbar>
+                <NavbarPanel type={"Admin Panel"}/>
 
                 <div className={"container"}>
                     <button type="button" className="collapsible">Add User</button>
