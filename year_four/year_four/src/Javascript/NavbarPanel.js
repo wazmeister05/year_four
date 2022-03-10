@@ -26,6 +26,11 @@ class NavbarPanel extends React.Component {
             </Navbar>
         );
     }
+
+    logout() {
+        localStorage.clear();
+        window.location.href = 'https://devweb2021.cis.strath.ac.uk/~qhb18155';
+    }
 }
 
 export default NavbarPanel;
