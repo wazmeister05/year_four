@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Stylesheet.css';
 import Course from './Course';
 import ClassSelection from "./ClassSelection";
-import {Container, Nav, Navbar} from "react-bootstrap";
 import {Route, Routes} from "react-router-dom";
 import TutorialsList from "../Database/components/tutorial-list.component";
 import AddTutorial from "../Database/components/add-tutorial.components";
@@ -45,10 +44,9 @@ class StudentUser extends React.Component {
     render() {
         return (
             <div>
+                <NavbarPanel type={this.props.user_details.username}/>
                 <div>
                     <div>
-                        <NavbarPanel type={this.props.user_details.username}/>
-
                         <div className="container mt-3">
                             <Routes>
                                 <Route exact path="/tutorials" element={<TutorialsList/>} />
@@ -64,14 +62,13 @@ class StudentUser extends React.Component {
 
                     </div>
                     <div id="page-wrap" className="col-md-11">
-                        <div><h1>Welcome, {this.props.user_details.username}</h1></div>
                         <div>
                             {this.getPage()}
                         </div>
                         <div>
-                            <p>
+                            <h2>
                                 test
-                            </p>
+                            </h2>
                         </div>
                     </div>
                 </div>

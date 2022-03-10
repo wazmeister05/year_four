@@ -18,7 +18,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className={'whole'}>
+            <div className={'wholeSite'}>
                 {this.state.user_details.username === 'admin' ? (
                     <AdminUser user_details={this.state.user_details}/>
                 ): this.state.user_details.username === 'student' ? (

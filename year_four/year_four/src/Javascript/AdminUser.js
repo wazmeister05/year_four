@@ -3,9 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
-import {Button} from "bootstrap";
 import NavbarPanel from "./NavbarPanel";
+import {Link, Route, Routes} from "react-router-dom";
+import AddUserComponent from "../Database/components/add-user.component";
+import RemoveUserComponent from "../Database/components/remove-user.component";
+import AddClassComponent from "../Database/components/add-class.component";
+import RemoveClassComponent from "../Database/components/remove-class.component";
+import {Button} from "react-bootstrap";
 
 class AdminUser extends React.Component {
 
@@ -21,31 +25,36 @@ class AdminUser extends React.Component {
         return (
             <div>
                 <NavbarPanel type={"Admin Panel"}/>
-
                 <div className={"container"}>
-                    <button type="button" className="collapsible">Add User</button>
-                    <div className="content">
-                        <h2>test</h2>
-                        <button className={'btn btn-primary'}>Submit</button>
-                        <button className={'btn btn-warning rightButton'}>Clear</button>
-                    </div>
-                    <button type="button" className="collapsible">Remove User</button>
-                    <div className="content">
-                        <h2>test</h2>
-                        <button className={'btn btn-primary'}>Submit</button>
-                        <button className={'btn btn-warning rightButton'}>Clear</button>
-                    </div>
-                    <button type="button" className="collapsible">Add Class</button>
-                    <div className="content">
-                        <h2>test</h2>
-                        <button className={'btn btn-primary'}>Submit</button>
-                        <button className={'btn btn-warning rightButton'}>Clear</button>
-                    </div>
-                    <button type="button" className="collapsible">Remove Class</button>
-                    <div className="content">
-                        <h2>test</h2>
-                        <button className={'btn btn-primary'}>Submit</button>
-                        <button className={'btn btn-warning rightButton'}>Clear</button>
+                    <div className={"container"} style={{marginTop: "2%"}}>
+                        <div className={"d-grid gap-2"}>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>
+                                    Add User
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/removeUser"} className="nav-link" style={{color: "white"}}>
+                                    Remove User
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>
+                                    Add Class
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/removeClass"} className="nav-link" style={{color: "white"}}>
+                                    Remove Class
+                                </Link>
+                            </Button>
+                            <Routes>
+                                <Route exact path="/addUser" element={AddUserComponent} />
+                                <Route exact path="/removeUser" element={RemoveUserComponent} />
+                                <Route exact path="/addClass" element={AddClassComponent} />
+                                <Route exact path="/removeClass" element={RemoveClassComponent} />
+                            </Routes>
+                        </div>
                     </div>
                 </div>
             </div>

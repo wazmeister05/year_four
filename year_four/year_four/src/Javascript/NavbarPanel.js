@@ -10,7 +10,6 @@ class NavbarPanel extends React.Component {
         };
     }
 
-
     render() {
         return(
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

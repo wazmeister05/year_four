@@ -7,8 +7,8 @@ class ClassSelection extends React.Component{
     }
 
     getCourseCodes(){
+        //TODO: here, get a list of classes the user is enrolled in.
         return ["CS451", "CS432"];
-
     }
 
     render(){
