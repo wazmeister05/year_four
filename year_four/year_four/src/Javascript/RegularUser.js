@@ -1,9 +1,8 @@
 import React from 'react';
-import '../css/Stylesheet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/Stylesheet.css';
 import Course from './Course';
 import ClassSelection from "./ClassSelection";
-import Sidebar from "./Sidebar";
 
 
 class RegularUser extends React.Component {
@@ -36,28 +35,14 @@ class RegularUser extends React.Component {
         }
     }
 
-    test = () => {
-        fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users', {
-            mode: 'no-cors'
-        })
-            .then(response => {
-                if (!response.ok){
-                    return Promise.reject(response.statusText);
-                }
-                return response.json()
-            })
-            .then(data => this.setState({database: data}))
-            .catch(error => console.log(error));
-    }
 
     render() {
         return (
             <div className="row">
                 <div className="col-md-1">
-                    <Sidebar navigate pageWrapId={'page-wrap'} outerContainerId={'outer-container'}
-                             user={this.props.user_details} setPage={this.setPage}/>
+
                 </div>
-                <div id="page-wrap welcome" className="col-md-11">
+                <div id="page-wrap" className="col-md-11">
                     <div><h1>Welcome, {this.props.user_details.username}</h1></div>
                     <div>
                         {this.getPage()}
@@ -65,7 +50,6 @@ class RegularUser extends React.Component {
                     <div>
                         <p>
                             test
-                            {this.test()}
                         </p>
                     </div>
                 </div>

@@ -1,7 +1,10 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Button} from "bootstrap";
 
 class AdminUser extends React.Component {
 
@@ -12,33 +15,44 @@ class AdminUser extends React.Component {
         };
     }
 
-    // this.props.user_details.username
-
     render() {
         return (
             <div>
-                <div>
-                    <h1 className={'title'}>Admin Console</h1>
-                    <div className={'logout'}><button onClick={() => {
-                        this.logout();
-                    }}>Log Out</button></div>
-                </div>
-                <div className={'adminFunctions'}>
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                    <Navbar.Brand id={'navbarLeft'} href="#">Admin Panel</Navbar.Brand>
+                    <Nav.Item>
+                        <Nav.Link>
+                            <button className={'btn btn-danger'} onClick={() => {
+                                this.logout();
+                            }}>Log Out</button>
+                        </Nav.Link>
+                    </Nav.Item>
+                </Navbar>
+
+                <div className={"container"}>
                     <button type="button" className="collapsible">Add User</button>
                     <div className="content">
                         <h2>test</h2>
+                        <button className={'btn btn-primary'}>Submit</button>
+                        <button className={'btn btn-warning rightButton'}>Clear</button>
                     </div>
                     <button type="button" className="collapsible">Remove User</button>
                     <div className="content">
-                        <p>test</p>
+                        <h2>test</h2>
+                        <button className={'btn btn-primary'}>Submit</button>
+                        <button className={'btn btn-warning rightButton'}>Clear</button>
                     </div>
                     <button type="button" className="collapsible">Add Class</button>
                     <div className="content">
-                        <p>test</p>
+                        <h2>test</h2>
+                        <button className={'btn btn-primary'}>Submit</button>
+                        <button className={'btn btn-warning rightButton'}>Clear</button>
                     </div>
                     <button type="button" className="collapsible">Remove Class</button>
                     <div className="content">
-                        <p>test</p>
+                        <h2>test</h2>
+                        <button className={'btn btn-primary'}>Submit</button>
+                        <button className={'btn btn-warning rightButton'}>Clear</button>
                     </div>
                 </div>
             </div>
@@ -58,38 +72,11 @@ class AdminUser extends React.Component {
                 }
             });
         }
-
-        const fetchData = async () => {
-            const response = await fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users')
-                .then(resp => resp.json())
-                .then(data => console.log(data))
-                .catch(error => console.log(error));
-        };
-        fetchData().then(r => console.log(r));
-        //console.log(this.state)
-
     }
-
-    // test() {
-    //     fetch('https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/users', {
-    //         mode: 'no-cors'
-    //     })
-    //         .then((response) => {
-    //             if (!response.ok){
-    //                 return Promise.reject(response.statusText);
-    //             }
-    //             return response.json()
-    //         })
-    //         .then((data) => {
-    //             console.log(data)
-    //             this.setState({database: data});
-    //         })
-    //         .catch(error => console.log(error));
-    // }
 
     logout() {
         localStorage.clear();
-        window.location.href = '/';
+        window.location.href = 'https://devweb2021.cis.strath.ac.uk/~qhb18155';
     }
 }
 

@@ -9,10 +9,6 @@
     padding-top: 10px;
 }
 
-#welcome{
-    padding: 30px;
-}
-
 #login .container #login-row #login-column #login-box #login-form {
     padding: 20px;
 }
@@ -41,84 +37,16 @@
     background-image: url('https://besthqwallpapers.com/Temp/6-2-2022/sunset-mountain-landscape-winter-alberta-canada-besthqwallpapers.com-1920x1080.jpg');
 }
 
-.calendar {
-    width: 250px;
-}
-
-.calendar .days button {
-    width: calc(100% / 7);
-}
-
-#sidebar-cal{
-    position: absolute;
-    bottom: 0;
-    width: 75%;
-}
-
-.react-calendar__navigation__next2-button {
-    display: none;
-}
-
-.react-calendar__navigation__prev2-button{
-    display: none;
-}
-
-.react-calendar__navigation__label__labelText{
-    font-size: medium;
-    font-weight: bold;
-}
-
-.react-calendar__month-view__weekdays__weekday{
-    color: black;
-}
-
-.react-calendar__viewContainer{
-    background-color: #9C9C9C;
-}
-
-.react-calendar__navigation{
-    background-color: #9C9C9C;
-}
-.react-calendar{
-    background: #9C9C9C;
-    border-radius: 5%;
-    font-size: smaller;
-}
-
-.react-calendar__tile--now {
-    border-radius: 10%;
-}
-
-.react-calendar__title--active{
-    border-radius: 10%;
-}
-
-.title{
-    display: inline;
-    float:left;
-    padding-top: 2%;
-}
-
-.logout{
-    display: inline;
-    float:right;
-    padding-top: 2%;
-}
-
-.adminFunctions{
-
-}
-
 .collapsible {
     background-color: #777;
     color: white;
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    border: none;
     text-align: left;
     outline: none;
     font-size: 15px;
+    border: 1px solid black;
 }
 
 .active, .collapsible:hover {
@@ -130,4 +58,34 @@
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+}
+
+.whole{
+    opacity:1;
+    background-color: #212529;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+}
+
+#navbarLeft{
+    margin-left: 2%;
+}
+
+.content{
+    background-color: darkgrey;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.rightButton{
+    float: right;
+    margin-bottom: 2%;
+}
+
+.leftButton{
+    margin-bottom:2%;
 }
