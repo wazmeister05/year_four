@@ -7,6 +7,7 @@ export default class AddUserComponent extends Component {
         this.onChangeRole = this.onChangeRole.bind(this);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.saveUser = this.saveUser.bind(this);
         this.newUser = this.newUser.bind(this);
         this.state = {
@@ -15,6 +16,7 @@ export default class AddUserComponent extends Component {
             role: "",
             firstName: "",
             lastName: "",
+            email: "",
             submitted: false
         };
     }
@@ -43,12 +45,19 @@ export default class AddUserComponent extends Component {
         });
     }
 
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
     saveUser() {
         let data = {
             username: this.state.username,
             role: this.state.role,
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
+            email: this.state.email
         };
         UserDataService.create(data)
             .then(response => {
@@ -58,6 +67,7 @@ export default class AddUserComponent extends Component {
                     role: response.data.role,
                     firstName: response.data.firstName,
                     lastName: response.data.lastName,
+                    email: response.data.email,
                     submitted: true
                 });
                 console.log(response.data);
@@ -73,10 +83,10 @@ export default class AddUserComponent extends Component {
             role: "",
             firstName: "",
             lastName: "",
+            email: "",
             submitted: false
         });
     }
-
 
     render() {
         return (
@@ -90,55 +100,70 @@ export default class AddUserComponent extends Component {
                     </div>
                 ) : (
                     <div>
-                        <div className="form-group">
-                            <label htmlFor="title">Username</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                required
-                                value={this.state.username}
-                                onChange={this.onChangeUsername}
-                                name="title"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Role</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                required
-                                value={this.state.role}
-                                onChange={this.onChangeRole}
-                                name="description"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">First Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                required
-                                value={this.state.firstName}
-                                onChange={this.onChangeFirstName}
-                                name="description"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Last Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                required
-                                value={this.state.lastName}
-                                onChange={this.onChangeLastName}
-                                name="description"
-                            />
-                        </div>
-                        <button onClick={this.saveUser} className="btn btn-success">
+                        <form className={"form-inside-input"}>
+                            <div className="form-group">
+                                <label htmlFor="description">First Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="description"
+                                    required
+                                    value={this.state.firstName}
+                                    onChange={this.onChangeFirstName}
+                                    name="description"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Last Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="description"
+                                    required
+                                    value={this.state.lastName}
+                                    onChange={this.onChangeLastName}
+                                    name="description"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="title">Username</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="title"
+                                    required
+                                    value={this.state.username}
+                                    onChange={this.onChangeUsername}
+                                    name="title"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Role</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="description"
+                                    required
+                                    value={this.state.role}
+                                    onChange={this.onChangeRole}
+                                    name="description"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    id="description"
+                                    required
+                                    value={this.state.email}
+                                    onChange={this.onChangeEmail}
+                                    name="description"
+                                />
+                            </div>
+                            <br/>
+                        </form>
+                        <button type="submit" onClick={this.saveUser} className="btn btn-success">
                             Submit
                         </button>
                     </div>

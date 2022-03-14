@@ -49,10 +49,10 @@ class AdminUser extends React.Component {
                                 </Link>
                             </Button>
                             <Routes>
-                                <Route exact path="/addUser" element={AddUserComponent} />
-                                <Route exact path="/removeUser" element={RemoveUserComponent} />
-                                <Route exact path="/addClass" element={AddClassComponent} />
-                                <Route exact path="/removeClass" element={RemoveClassComponent} />
+                                <Route exact path="/addUser" element={<AddUserComponent />} />
+                                <Route exact path="/removeUser" element={<RemoveUserComponent />} />
+                                <Route exact path="/addClass" element={<AddClassComponent />} />
+                                <Route exact path="/removeClass" element={<RemoveClassComponent />} />
                             </Routes>
                         </div>
                     </div>
