@@ -2,6 +2,8 @@ import React from 'react';
 import '../css/Stylesheet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const ADMIN = "admin";
+
 class Login extends React.Component {
 
     constructor(props) {
@@ -18,8 +20,11 @@ class Login extends React.Component {
     }
 
     onSubmitForm(){
-        const usernames = ["admin", "teacher", "student"];
-        if(usernames.includes(this.state.username.toString().toLowerCase())){
+        //if(usernames.includes(this.state.username.toString().toLowerCase())){
+        if(this.state.username.toString().toLowerCase() === ADMIN && this.state.password.toString() === ADMIN){
+            this.props.login(this.state);
+        }
+        else if(this.state.username.toString().toLowerCase() === "student" || this.state.username.toString().toLowerCase() === "teacher"){
             this.props.login(this.state);
         }
         else{

@@ -10,6 +10,10 @@ import RemoveUserComponent from "../Database/components/remove-user.component";
 import AddClassComponent from "../Database/components/add-class.component";
 import RemoveClassComponent from "../Database/components/remove-class.component";
 import {Button} from "react-bootstrap";
+import TutorialsList from "../Database/components/tutorial-list.component";
+import AddTutorial from "../Database/components/add-tutorial.components";
+import Tutorial from "../Database/components/tutorial.component";
+import User from "../Database/components/user.component";
 
 class AdminUser extends React.Component {
 
@@ -57,6 +61,42 @@ class AdminUser extends React.Component {
                         </div>
                     </div>
                 </div>
+
+
+
+                {/*delete below*/}
+
+
+
+                <nav className="navbar navbar-expand navbar-dark bg-dark">
+                    <a href="/tutorials" className="navbar-brand">
+                        bezKoder
+                    </a>
+                    <div className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <Link to={"/tutorials"} className="nav-link">
+                                Tutorials
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={"/add"} className="nav-link">
+                                Add
+                            </Link>
+                        </li>
+                    </div>
+                </nav>
+                <div className="container mt-3">
+                    <Routes>
+                        <Route path="/" element={<TutorialsList />} />
+                        <Route path="/tutorials" element={<TutorialsList />} />
+                        <Route path="/add" element={<AddTutorial />} />
+                        <Route path="/tutorials/:id" element={<Tutorial />} />
+                    </Routes>
+                </div>
+
+
+                {/*delete above*/}
+
             </div>
         )
     }
