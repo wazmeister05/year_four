@@ -22,6 +22,7 @@ class Main extends React.Component {
             return <Home user={this.state.user_details}/>;
         }
         else {
+
             return <Login login={this.login}/>;
         }
 

@@ -61,6 +61,7 @@ export default class AddUserComponent extends Component {
         };
         UserDataService.create(data)
             .then(response => {
+                console.log("hi");
                 this.setState({
                     id: response.data.id,
                     username: response.data.username,
@@ -102,63 +103,63 @@ export default class AddUserComponent extends Component {
                     <div>
                         <form className={"form-inside-input"}>
                             <div className="form-group">
-                                <label htmlFor="description">First Name</label>
+                                <label htmlFor="firstName">First Name</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="description"
+                                    id="firstName"
                                     required
                                     value={this.state.firstName}
                                     onChange={this.onChangeFirstName}
-                                    name="description"
+                                    name="firstName"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="description">Last Name</label>
+                                <label htmlFor="lastName">Last Name</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="description"
+                                    id="lastName"
                                     required
                                     value={this.state.lastName}
                                     onChange={this.onChangeLastName}
-                                    name="description"
+                                    name="lastName"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="title">Username</label>
+                                <label htmlFor="username">Username</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="title"
+                                    id="username"
                                     required
                                     value={this.state.username}
                                     onChange={this.onChangeUsername}
-                                    name="title"
+                                    name="username"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="description">Role</label>
+                                <label htmlFor="role">Role</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="description"
+                                    id="role"
                                     required
                                     value={this.state.role}
                                     onChange={this.onChangeRole}
-                                    name="description"
+                                    name="role"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="description">Email</label>
+                                <label htmlFor="email">Email</label>
                                 <input
                                     type="email"
                                     className="form-control"
-                                    id="description"
+                                    id="email"
                                     required
                                     value={this.state.email}
                                     onChange={this.onChangeEmail}
-                                    name="description"
+                                    name="email"
                                 />
                             </div>
                             <br/>

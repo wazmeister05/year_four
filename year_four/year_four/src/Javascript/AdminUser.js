@@ -8,7 +8,6 @@ import {Link, Route, Routes} from "react-router-dom";
 import AddUserComponent from "../Database/components/add-user.component";
 import RemoveUserComponent from "../Database/components/remove-user.component";
 import AddClassComponent from "../Database/components/add-class.component";
-import RemoveClassComponent from "../Database/components/remove-class.component";
 import {Button} from "react-bootstrap";
 import TutorialsList from "../Database/components/tutorial-list.component";
 import AddTutorial from "../Database/components/add-tutorial.components";
@@ -39,7 +38,7 @@ class AdminUser extends React.Component {
                             </Button>
                             <Button variant="secondary" size={"1g"}>
                                 <Link to={"/removeUser"} className="nav-link" style={{color: "white"}}>
-                                    Remove User
+                                    Remove user from class
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
@@ -47,16 +46,10 @@ class AdminUser extends React.Component {
                                     Add Class
                                 </Link>
                             </Button>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/removeClass"} className="nav-link" style={{color: "white"}}>
-                                    Remove Class
-                                </Link>
-                            </Button>
                             <Routes>
                                 <Route exact path="/addUser" element={<AddUserComponent />} />
                                 <Route exact path="/removeUser" element={<RemoveUserComponent />} />
                                 <Route exact path="/addClass" element={<AddClassComponent />} />
-                                <Route exact path="/removeClass" element={<RemoveClassComponent />} />
                             </Routes>
                         </div>
                     </div>
@@ -65,36 +58,28 @@ class AdminUser extends React.Component {
 
 
                 {/*delete below*/}
-
-
-
-                <nav className="navbar navbar-expand navbar-dark bg-dark">
-                    <a href="/tutorials" className="navbar-brand">
-                        bezKoder
-                    </a>
-                    <div className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <Link to={"/tutorials"} className="nav-link">
-                                Tutorials
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to={"/add"} className="nav-link">
-                                Add
-                            </Link>
-                        </li>
-                    </div>
-                </nav>
-                <div className="container mt-3">
-                    <Routes>
-                        <Route path="/" element={<TutorialsList />} />
-                        <Route path="/tutorials" element={<TutorialsList />} />
-                        <Route path="/add" element={<AddTutorial />} />
-                        <Route path="/tutorials/:id" element={<Tutorial />} />
-                    </Routes>
-                </div>
-
-
+                {/*<nav className="navbar navbar-expand navbar-dark bg-dark">*/}
+                {/*    <div className="navbar-nav mr-auto">*/}
+                {/*        <li className="nav-item">*/}
+                {/*            <Link to={"/tutorials"} className="nav-link">*/}
+                {/*                Tutorials*/}
+                {/*            </Link>*/}
+                {/*        </li>*/}
+                {/*        <li className="nav-item">*/}
+                {/*            <Link to={"/add"} className="nav-link">*/}
+                {/*                Add*/}
+                {/*            </Link>*/}
+                {/*        </li>*/}
+                {/*    </div>*/}
+                {/*</nav>*/}
+                {/*<div className="container mt-3">*/}
+                {/*    <Routes>*/}
+                {/*        <Route path="/" element={<TutorialsList />} />*/}
+                {/*        <Route path="/tutorials" element={<TutorialsList />} />*/}
+                {/*        <Route path="/add" element={<AddTutorial />} />*/}
+                {/*        <Route path="/tutorials/:id" element={<Tutorial />} />*/}
+                {/*    </Routes>*/}
+                {/*</div>*/}
                 {/*delete above*/}
 
             </div>
