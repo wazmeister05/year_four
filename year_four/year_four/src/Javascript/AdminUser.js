@@ -30,30 +30,30 @@ class AdminUser extends React.Component {
                     <div className={"container"} style={{marginTop: "2%"}}>
                         <div className={"d-grid gap-2"}>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>
+                                <Link to={"/~qhb18155/addUser"} className="nav-link" style={{color: "white"}}>
                                     Add User
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>
+                                <Link to={"/~qhb18155/addClass"} className="nav-link" style={{color: "white"}}>
                                     Add Class
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addUserToClass"} className="nav-link" style={{color: "white"}}>
+                                <Link to={"/~qhb18155/addUserToClass"} className="nav-link" style={{color: "white"}}>
                                     Add user to class
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/removeUserFromClass"} className="nav-link" style={{color: "white"}}>
+                                <Link to={"/~qhb18155/removeUserFromClass"} className="nav-link" style={{color: "white"}}>
                                     Remove user from class
                                 </Link>
                             </Button>
                             <Routes>
-                                <Route exact path="/addUser" element={<AddUserComponent />} />
-                                <Route exact path="/addClass" element={<AddClass />} />
-                                <Route exact path="/addUserToClass" element={<AddUserClassComponent />} />
-                                <Route exact path="/removeUserFromClass" element={<RemoveUserClassComponent />} />
+                                <Route exact path="/~qhb18155/addUser" element={<AddUserComponent />} />
+                                <Route exact path="/~qhb18155/addClass" element={<AddClass />} />
+                                <Route exact path="/~qhb18155/addUserToClass" element={<AddUserClassComponent />} />
+                                <Route exact path="/~qhb18155/removeUserFromClass" element={<RemoveUserClassComponent />} />
                             </Routes>
                         </div>
                     </div>
