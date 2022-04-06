@@ -5,14 +5,12 @@ import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
 import {Link, Route, Routes} from "react-router-dom";
-import AddUserComponent from "../Database/components/add-user.component";
-import RemoveUserComponent from "../Database/components/remove-user.component";
-import AddClassComponent from "../Database/components/add-class.component";
 import {Button} from "react-bootstrap";
-import TutorialsList from "../Database/components/tutorial-list.component";
-import AddTutorial from "../Database/components/add-tutorial.components";
-import Tutorial from "../Database/components/tutorial.component";
-import User from "../Database/components/user.component";
+import AddUserComponent from "../Database/components/add-user.component";
+import RemoveUserClassComponent from "../Database/components/remove-userClass.component";
+import AddUserClassComponent from "../Database/components/add-userClass.component";
+
+import AddClass from "../Database/components/add-class.components";
 
 class AdminUser extends React.Component {
 
@@ -37,51 +35,29 @@ class AdminUser extends React.Component {
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/removeUser"} className="nav-link" style={{color: "white"}}>
-                                    Remove user from class
-                                </Link>
-                            </Button>
-                            <Button variant="secondary" size={"1g"}>
                                 <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>
                                     Add Class
                                 </Link>
                             </Button>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/addUserToClass"} className="nav-link" style={{color: "white"}}>
+                                    Add user to class
+                                </Link>
+                            </Button>
+                            <Button variant="secondary" size={"1g"}>
+                                <Link to={"/removeUserFromClass"} className="nav-link" style={{color: "white"}}>
+                                    Remove user from class
+                                </Link>
+                            </Button>
                             <Routes>
                                 <Route exact path="/addUser" element={<AddUserComponent />} />
-                                <Route exact path="/removeUser" element={<RemoveUserComponent />} />
-                                <Route exact path="/addClass" element={<AddClassComponent />} />
+                                <Route exact path="/addClass" element={<AddClass />} />
+                                <Route exact path="/addUserToClass" element={<AddUserClassComponent />} />
+                                <Route exact path="/removeUserFromClass" element={<RemoveUserClassComponent />} />
                             </Routes>
                         </div>
                     </div>
                 </div>
-
-
-
-                {/*delete below*/}
-                {/*<nav className="navbar navbar-expand navbar-dark bg-dark">*/}
-                {/*    <div className="navbar-nav mr-auto">*/}
-                {/*        <li className="nav-item">*/}
-                {/*            <Link to={"/tutorials"} className="nav-link">*/}
-                {/*                Tutorials*/}
-                {/*            </Link>*/}
-                {/*        </li>*/}
-                {/*        <li className="nav-item">*/}
-                {/*            <Link to={"/add"} className="nav-link">*/}
-                {/*                Add*/}
-                {/*            </Link>*/}
-                {/*        </li>*/}
-                {/*    </div>*/}
-                {/*</nav>*/}
-                {/*<div className="container mt-3">*/}
-                {/*    <Routes>*/}
-                {/*        <Route path="/" element={<TutorialsList />} />*/}
-                {/*        <Route path="/tutorials" element={<TutorialsList />} />*/}
-                {/*        <Route path="/add" element={<AddTutorial />} />*/}
-                {/*        <Route path="/tutorials/:id" element={<Tutorial />} />*/}
-                {/*    </Routes>*/}
-                {/*</div>*/}
-                {/*delete above*/}
-
             </div>
         )
     }

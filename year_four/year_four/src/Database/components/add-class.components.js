@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import TutorialDataService from "../tutorial.service";
-export default class AddTutorial extends Component {
+import ClassDataService from "../class.service";
+export default class AddClass extends Component {
     constructor(props) {
         super(props);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.saveTutorial = this.saveTutorial.bind(this);
-        this.newTutorial = this.newTutorial.bind(this);
+        this.saveClass = this.saveClass.bind(this);
+        this.newClass = this.newClass.bind(this);
         this.state = {
             id: null,
             title: "",
@@ -25,12 +25,12 @@ export default class AddTutorial extends Component {
             description: e.target.value
         });
     }
-    saveTutorial() {
+    saveClass() {
         let data = {
             title: this.state.title,
             description: this.state.description
         };
-        TutorialDataService.create(data)
+        ClassDataService.create(data)
             .then(response => {
                 this.setState({
                     id: response.data.id,
@@ -45,7 +45,7 @@ export default class AddTutorial extends Component {
                 console.log(e);
             });
     }
-    newTutorial() {
+    newClass() {
         this.setState({
             id: null,
             title: "",
@@ -60,7 +60,7 @@ export default class AddTutorial extends Component {
                 {this.state.submitted ? (
                     <div>
                         <h4>You submitted successfully!</h4>
-                        <button className="btn btn-success" onClick={this.newTutorial}>
+                        <button className="btn btn-success" onClick={this.newClass}>
                             Add
                         </button>
                     </div>
@@ -90,7 +90,8 @@ export default class AddTutorial extends Component {
                                 name="description"
                             />
                         </div>
-                        <button onClick={this.saveTutorial} className="btn btn-success">
+                        <br/>
+                        <button onClick={this.saveClass} className="btn btn-success">
                             Submit
                         </button>
                     </div>

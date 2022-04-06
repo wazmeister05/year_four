@@ -53,22 +53,21 @@ export default class AddUserComponent extends Component {
 
     saveUser() {
         let data = {
-            username: this.state.username,
-            role: this.state.role,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email
+            username: this.state.username.toLowerCase(),
+            role: this.state.role.toLowerCase(),
+            firstName: this.state.firstName.toLowerCase(),
+            lastName: this.state.lastName.toLowerCase(),
+            email: this.state.email.toLowerCase()
         };
         UserDataService.create(data)
             .then(response => {
-                console.log("hi");
                 this.setState({
                     id: response.data.id,
-                    username: response.data.username,
-                    role: response.data.role,
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
-                    email: response.data.email,
+                    username: response.data.username.toLowerCase(),
+                    role: response.data.role.toLowerCase(),
+                    firstName: response.data.firstName.toLowerCase(),
+                    lastName: response.data.lastName.toLowerCase(),
+                    email: response.data.email.toLowerCase(),
                     submitted: true
                 });
                 console.log(response.data);
