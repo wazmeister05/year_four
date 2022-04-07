@@ -1,25 +1,25 @@
 import http from "./http-common";
 class ClassDataService {
     getAll() {
-        return http.get("/~qhb18155/classes");
+        return http.get("/classes");
     }
     get(id) {
-        return http.get(`/~qhb18155/classes/${id}`);
+        return http.get(`/classes/${id}`);
     }
     create(data) {
-        return http.post("/~qhb18155/classes", data);
+        return http.post("/classes", data);
     }
     update(id, data) {
-        return http.put(`/~qhb18155/classes/${id}`, data);
+        return http.put(`/classes/${id}`, data);
     }
     delete(id) {
-        return http.delete(`/~qhb18155/classes/${id}`);
+        return http.delete(`/classes/${id}`);
     }
     deleteAll() {
-        return http.delete(`/~qhb18155/classes`);
+        return http.delete(`/classes`);
     }
     findByTitle(title) {
-        return http.get(`/~qhb18155/classes?title=${title}`);
+        return http.get(`/classes?title=${title}`);
     }
 }
 export default new ClassDataService();

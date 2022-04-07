@@ -144,7 +144,7 @@ export default class TutorialsList extends Component {
                                 {currentTutorial.published ? "Published" : "Pending"}
                             </div>
                             <Link
-                                to={"/~qhb18155/tutorials/" + currentTutorial.id}
+                                to={"/tutorials/" + currentTutorial.id}
                                 className="badge badge-warning"
                             >
                                 Edit
