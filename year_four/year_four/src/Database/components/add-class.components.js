@@ -61,7 +61,7 @@ export default class AddClass extends Component {
                     <div>
                         <h4>You submitted successfully!</h4>
                         <button className="btn btn-success" onClick={this.newClass}>
-                            Add
+                            Add\
                         </button>
                     </div>
                 ) : (

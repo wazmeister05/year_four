@@ -30,15 +30,15 @@ export default class RemoveUserClassComponent extends Component {
 
     removeUserClass() {
         let data = {
-            username: this.state.username.toLowerCase(),
-            class: this.state.class.toLowerCase()
+            username: this.state.username,
+            class: this.state.class
         };
         RemClassDataService.create(data)
             .then(response => {
                 this.setState({
                     id: response.data.id,
-                    username: response.data.username.toLowerCase(),
-                    class: response.data.class.toLowerCase(),
+                    username: response.data.username,
+                    class: response.data.class,
                     submitted: true
                 });
                 console.log(response.data);
