@@ -9,7 +9,6 @@ import {Button} from "react-bootstrap";
 import AddUserComponent from "../Database/components/add-user.component";
 import RemoveUserClassComponent from "../Database/components/remove-userClass.component";
 import AddUserClassComponent from "../Database/components/add-userClass.component";
-
 import AddClass from "../Database/components/add-class.components";
 
 class AdminUser extends React.Component {

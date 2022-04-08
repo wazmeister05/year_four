@@ -73,7 +73,7 @@ export default class AddUserComponent extends Component {
                 console.log(response.data);
             })
             .catch(e => {
-                console.log(e);
+                console.log("PROBLEM " + e.toString());
             });
     }
     newUser() {
