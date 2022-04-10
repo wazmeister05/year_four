@@ -82,7 +82,7 @@ export default class RemoveUserClassComponent extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="class">Role</label>
+                                <label htmlFor="class">Class Code</label>
                                 <input
                                     type="text"
                                     className="form-control"

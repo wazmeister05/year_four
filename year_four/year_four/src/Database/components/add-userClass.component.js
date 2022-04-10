@@ -11,7 +11,7 @@ export default class AddUserClassComponent extends Component {
         this.state = {
             id: null,
             username: "",
-            class: "",
+            classCode: "",
             submitted: false
         };
     }
@@ -24,21 +24,21 @@ export default class AddUserClassComponent extends Component {
 
     onChangeClass(e) {
         this.setState({
-            class: e.target.value
+            classCode: e.target.value
         });
     }
 
     saveUserClass() {
         let data = {
             username: this.state.username,
-            class: this.state.class
+            classCode: this.state.classCode
         };
         AddClassDataService.create(data)
             .then(response => {
                 this.setState({
                     id: response.data.id,
                     username: response.data.username,
-                    class: response.data.class,
+                    classCode: response.data.classCode,
                     submitted: true
                 });
                 console.log(response.data);
@@ -51,7 +51,7 @@ export default class AddUserClassComponent extends Component {
         this.setState({
             id: null,
             username: "",
-            class: "",
+            classCode: "",
             submitted: false
         });
     }
@@ -82,13 +82,13 @@ export default class AddUserClassComponent extends Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="class">Role</label>
+                                <label htmlFor="class">Class Code</label>
                                 <input
                                     type="text"
                                     className="form-control"
                                     id="role"
                                     required
-                                    value={this.state.class}
+                                    value={this.state.classCode}
                                     onChange={this.onChangeClass}
                                     name="role"
                                 />
