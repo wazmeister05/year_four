@@ -5,12 +5,14 @@ export default class AddClass extends Component {
         super(props);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeTeacher = this.onChangeTeacher.bind(this);
         this.saveClass = this.saveClass.bind(this);
         this.newClass = this.newClass.bind(this);
         this.state = {
             id: null,
             title: "",
             description: "",
+            teacher: "",
             published: false,
             submitted: false
         };
@@ -25,10 +27,16 @@ export default class AddClass extends Component {
             description: e.target.value
         });
     }
+    onChangeTeacher(e) {
+        this.setState({
+            teacher: e.target.value
+        });
+    }
     saveClass() {
         let data = {
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
+            teacher: this.state.teacher
         };
         ClassDataService.create(data)
             .then(response => {
@@ -36,6 +44,7 @@ export default class AddClass extends Component {
                     id: response.data.id,
                     title: response.data.title,
                     description: response.data.description,
+                    teacher: response.data.teacher,
                     published: response.data.published,
                     submitted: true
                 });
@@ -50,6 +59,7 @@ export default class AddClass extends Component {
             id: null,
             title: "",
             description: "",
+            teacher: "",
             published: false,
             submitted: false
         });
@@ -61,7 +71,7 @@ export default class AddClass extends Component {
                     <div>
                         <h4>You submitted successfully!</h4>
                         <button className="btn btn-success" onClick={this.newClass}>
-                            Add\
+                            Add
                         </button>
                     </div>
                 ) : (
@@ -88,6 +98,18 @@ export default class AddClass extends Component {
                                 value={this.state.description}
                                 onChange={this.onChangeDescription}
                                 name="description"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="teacher">Teacher</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="teacher"
+                                required
+                                value={this.state.teacher}
+                                onChange={this.onChangeTeacher}
+                                name="teacher"
                             />
                         </div>
                         <br/>

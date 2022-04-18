@@ -10,6 +10,7 @@ import AddUserComponent from "../Database/components/add-user.component";
 import RemoveUserClassComponent from "../Database/components/remove-userClass.component";
 import AddUserClassComponent from "../Database/components/add-userClass.component";
 import AddClass from "../Database/components/add-class.components";
+import ClassesList from "../Database/components/class-list.component";
 
 class AdminUser extends React.Component {
 
@@ -40,12 +41,12 @@ class AdminUser extends React.Component {
                             </Button>
                             <Button variant="secondary" size={"1g"}>
                                 <Link to={"/addUserToClass"} className="nav-link" style={{color: "white"}}>
-                                    Add user to class
+                                    Add teacher to class
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
                                 <Link to={"/removeUserFromClass"} className="nav-link" style={{color: "white"}}>
-                                    Remove user from class
+                                    Remove teacher from class
                                 </Link>
                             </Button>
                             <Routes>

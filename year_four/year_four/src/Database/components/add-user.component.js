@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import UserDataService from "../user.service";
 export default class AddUserComponent extends Component {
     constructor(props) {
@@ -53,11 +55,11 @@ export default class AddUserComponent extends Component {
 
     saveUser() {
         let data = {
-            username: this.state.username,
-            role: this.state.role,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email
+            username: this.state.username.toLowerCase(),
+            role: this.state.role.toLowerCase(),
+            firstName: this.state.firstName.toLowerCase(),
+            lastName: this.state.lastName.toLowerCase(),
+            email: this.state.email.toLowerCase()
         };
         UserDataService.create(data)
             .then(response => {
@@ -88,7 +90,9 @@ export default class AddUserComponent extends Component {
         });
     }
 
+
     render() {
+
         return (
             <div className="submit-form">
                 {this.state.submitted ? (
@@ -139,6 +143,8 @@ export default class AddUserComponent extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="role">Role</label>
+                                {/*<Dropdown options={['student','teacher']} onChange={this.onChangeRole} value={this.state.role} placeholder="Select an option" />*/}
+
                                 <input
                                     type="text"
                                     className="form-control"

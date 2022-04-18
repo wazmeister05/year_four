@@ -56,6 +56,10 @@ export default class AddUserClassComponent extends Component {
         });
     }
 
+    getClasses(){
+
+    }
+
     render() {
         return (
             <div className="submit-form">
