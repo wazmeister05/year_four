@@ -1,6 +1,9 @@
-*{
+* {
     box-sizing: border-box;
     font-family: Arial, serif;
+}
+
+body {
     overflow: hidden;
 }
 
@@ -89,4 +92,24 @@
 
 .leftButton{
     margin-bottom:2%;
+}
+
+#headerTitleTeacher{
+    text-align: center;
+    font-size: 300%;
+    background-Color: #5c636a;
+    color: white;
+    padding: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+}
+
+#announcementBox{
+    width: 50%;
+    height: 200px;
+    display: inline-block;
+    margin: 20px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
 }

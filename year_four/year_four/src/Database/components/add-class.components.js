@@ -34,9 +34,9 @@ export default class AddClass extends Component {
     }
     saveClass() {
         let data = {
-            title: this.state.title,
-            description: this.state.description,
-            teacher: this.state.teacher
+            title: this.state.title.toLowerCase(),
+            description: this.state.description.toLowerCase(),
+            teacher: this.state.teacher.toLowerCase()
         };
         ClassDataService.create(data)
             .then(response => {

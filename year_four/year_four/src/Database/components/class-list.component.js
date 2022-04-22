@@ -61,6 +61,16 @@ export default class ClassesList extends Component {
                 console.log(e);
             });
     }
+    removeClass(id){
+        ClassDataService.delete(id)
+            .then(response => {
+                console.log(response.data);
+                this.refreshList();
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
     searchTitle() {
         ClassDataService.findByTitle(this.state.searchTitle)
             .then(response => {
@@ -98,7 +108,7 @@ export default class ClassesList extends Component {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <h4>Tutorials List</h4>
+                    <h4>Class List</h4>
                     <ul className="list-group">
                         {classes &&
                         classes.map((tutorial, index) => (
@@ -110,21 +120,20 @@ export default class ClassesList extends Component {
                                 onClick={() => this.setActiveClass(tutorial, index)}
                                 key={index}
                             >
-                                {tutorial.title}
+                                {tutorial.title} ({tutorial.description}) - {tutorial.teacher}
                             </li>
                         ))}
                     </ul>
-                    <button
-                        className="m-3 btn btn-sm btn-danger"
-                        onClick={this.removeAllClasses}
-                    >
-                        Remove All
-                    </button>
+                    {/*<button className="m-3 btn btn-sm btn-danger" onClick={this.removeAllClasses}>Remove All*/}
+                    {/*</button>*/}
                 </div>
                 <div className="col-md-6">
                     {currentClass ? (
                         <div>
-                            <h4>Tutorial</h4>
+                            <h4>Class</h4>
+                            {/*<button onClick={this.removeClass(currentClass.id)}>*/}
+                            {/*    Delete Class*/}
+                            {/*</button>*/}
                             <div>
                                 <label>
                                     <strong>Title:</strong>
@@ -139,16 +148,10 @@ export default class ClassesList extends Component {
                             </div>
                             <div>
                                 <label>
-                                    <strong>Status:</strong>
+                                    <strong>Teacher:</strong>
                                 </label>{" "}
-                                {currentClass.published ? "Published" : "Pending"}
+                                {currentClass.teacher}
                             </div>
-                            <Link
-                                to={"/classes/" + currentClass.id}
-                                className="badge badge-warning"
-                            >
-                                Edit
-                            </Link>
                         </div>
                     ) : (
                         <div>

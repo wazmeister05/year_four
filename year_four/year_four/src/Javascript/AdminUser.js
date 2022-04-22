@@ -7,10 +7,9 @@ import NavbarPanel from "./NavbarPanel";
 import {Link, Route, Routes} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import AddUserComponent from "../Database/components/add-user.component";
-import RemoveUserClassComponent from "../Database/components/remove-userClass.component";
-import AddUserClassComponent from "../Database/components/add-userClass.component";
 import AddClass from "../Database/components/add-class.components";
 import ClassesList from "../Database/components/class-list.component";
+import User from "../Database/components/user.component";
 
 class AdminUser extends React.Component {
 
@@ -31,7 +30,7 @@ class AdminUser extends React.Component {
                         <div className={"d-grid gap-2"}>
                             <Button variant="secondary" size={"1g"}>
                                 <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>
-                                    Add User
+                                    Add Teacher
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
@@ -40,21 +39,23 @@ class AdminUser extends React.Component {
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addUserToClass"} className="nav-link" style={{color: "white"}}>
-                                    Add teacher to class
+                                <Link to={"/classList"}  className="nav-link" style={{color: "white"}}>
+                                    Classes
                                 </Link>
                             </Button>
                             <Button variant="secondary" size={"1g"}>
-                                <Link to={"/removeUserFromClass"} className="nav-link" style={{color: "white"}}>
-                                    Remove teacher from class
+                                <Link to={"/userList"}  className="nav-link" style={{color: "white"}}>
+                                    Users
                                 </Link>
                             </Button>
                             <Routes>
                                 <Route exact path="/addUser" element={<AddUserComponent />} />
                                 <Route exact path="/addClass" element={<AddClass />} />
-                                <Route exact path="/addUserToClass" element={<AddUserClassComponent />} />
-                                <Route exact path="/removeUserFromClass" element={<RemoveUserClassComponent />} />
+                                <Route exact path="/classList" element={<ClassesList />} />
+                                <Route exact path="/userList" element={<User />} />
                             </Routes>
+
+                            {/*/<ClassesList />*/}
                         </div>
                     </div>
                 </div>
