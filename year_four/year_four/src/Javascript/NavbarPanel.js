@@ -12,7 +12,7 @@ class NavbarPanel extends React.Component {
 
     render() {
         return(
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar sticky={"top"} collapseOnSelect expand="lg" bg="dark" variant="dark" id={"navbarPosition"}>
                 <Navbar.Brand id={'navbarLeft'}>{this.state.type}</Navbar.Brand>
                 <Nav.Item>
                     <Nav.Link>

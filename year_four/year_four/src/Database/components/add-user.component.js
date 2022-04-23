@@ -6,7 +6,7 @@ export default class AddUserComponent extends Component {
     constructor(props) {
         super(props);
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeRole = this.onChangeRole.bind(this);
+        //this.onChangeRole = this.onChangeRole.bind(this);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -15,7 +15,7 @@ export default class AddUserComponent extends Component {
         this.state = {
             id: null,
             username: "",
-            role: "",
+            role: props.role,
             firstName: "",
             lastName: "",
             email: "",
@@ -29,11 +29,11 @@ export default class AddUserComponent extends Component {
         });
     }
 
-    onChangeRole(e) {
-        this.setState({
-            role: e.target.value
-        });
-    }
+    // onChangeRole(e) {
+    //     this.setState({
+    //         role: e.target.value
+    //     });
+    // }
 
     onChangeFirstName(e) {
         this.setState({
@@ -82,7 +82,7 @@ export default class AddUserComponent extends Component {
         this.setState({
             id: null,
             username: "",
-            role: "",
+            // role: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -92,7 +92,6 @@ export default class AddUserComponent extends Component {
 
 
     render() {
-
         return (
             <div className="submit-form">
                 {this.state.submitted ? (
@@ -150,9 +149,11 @@ export default class AddUserComponent extends Component {
                                     className="form-control"
                                     id="role"
                                     required
-                                    value={this.state.role}
+                                    placeholder={this.state.role}
+                                    defaultValue={this.state.role}
                                     onChange={this.onChangeRole}
                                     name="role"
+                                    disabled
                                 />
                             </div>
                             <div className="form-group">

@@ -3,8 +3,19 @@
     font-family: Arial, serif;
 }
 
-body {
-    overflow: hidden;
+html, body {
+    overscroll-behavior-y: none;
+    background-color: #C7D3D4FF;
+}
+
+.wholeSite{
+    opacity:1;
+    background-color: #C7D3D4FF;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:1000;
 }
 
 #page-wrap{
@@ -63,18 +74,6 @@ body {
     background-color: #f1f1f1;
 }
 
-.wholeSite{
-    opacity:1;
-    background-color: powderblue;
-    /*background-color: #212529;*/
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:1000;
-}
-
 #navbarLeft{
     margin-left: 2%;
 }
@@ -97,7 +96,7 @@ body {
 #headerTitleTeacher{
     text-align: center;
     font-size: 300%;
-    background-Color: #5c636a;
+    background-Color: #555;
     color: white;
     padding: 2rem;
     margin-left: 1rem;
@@ -112,4 +111,27 @@ body {
     margin: 20px 0px;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.Collapsible__trigger {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.active, .Collapsible__trigger:hover {
+    background-color: #555;
+}
+
+.internalCollapseDiv{
+    padding-left: 10%;
+    padding-right: 10%;
 }

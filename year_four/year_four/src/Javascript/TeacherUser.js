@@ -4,11 +4,26 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
-import {Link, Route, Routes} from "react-router-dom";
-import {Button, Dropdown, DropdownButton} from "react-bootstrap";
+import {Dropdown} from "react-bootstrap";
 import AddCoursework from "../Database/components/add-coursework.component";
 import TextAreaHandle from "./TextAreaHandling";
+import Collapsible from 'react-collapsible';
+import AddUserComponent from "../Database/components/add-user.component";
 
+let coll = document.getElementsByClassName("collapsible");
+let i;
+
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        let content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+}
 
 class TeacherUser extends React.Component {
 
@@ -36,46 +51,59 @@ class TeacherUser extends React.Component {
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             Select Class
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => {
-                                this.setCourse("CS451");
-                                }
-                            }>CS451</Dropdown.Item>
-                            <Dropdown.Item onClick={() => {
-                                this.setCourse("THIS");
-                            }
-                            }>THIS</Dropdown.Item>
-                            <Dropdown.Item onClick={() => {
-                                this.setCourse("THAT");
-                            }
-                            }>THAT</Dropdown.Item>
+                            <Dropdown.Item onClick={() => {this.setCourse("CS451");}}>CS451</Dropdown.Item>
+                            <Dropdown.Item onClick={() => {this.setCourse("THIS");}}>THIS</Dropdown.Item>
+                            <Dropdown.Item onClick={() => {this.setCourse("THAT");}}>THAT</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                     <br/>
                     <h1 id={"headerTitleTeacher"}>{this.state.code}</h1>
-
-
-
                     <div className={"container"} style={{marginTop: "2%"}}>
                         <div className={"d-grid gap-2"}>
-                            <Button variant="secondary" >
-                                <Link to={"/addCoursework"} className="nav-link" style={{color: "white"}}>
-                                    New Coursework
-                                </Link>
-                            </Button>
-                            <Routes>
-                                <Route exact path="/addCoursework" element={<AddCoursework courseCode={this.state.code} />} />
-                            </Routes>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/classAnnouncement"} className="nav-link" style={{color: "white"}}>
-                                    Class Announcement
-                                </Link>
-                            </Button>
-                        </div>
-                        <TextAreaHandle version={"announce"}/>
-                    </div>
+                            <Collapsible trigger={"Add New Coursework"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <AddCoursework courseCode={this.state.code} />
+                                </div>
+                            </Collapsible>
 
+                            <Collapsible trigger={"Edit Coursework"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"View Student Submissions"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Add Student to Course"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <AddUserComponent role={"student"}/>
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Remove Student from Course"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Change Student Pairings"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Class Announcement"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <TextAreaHandle version={"announce"}/>
+                                </div>
+                            </Collapsible>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

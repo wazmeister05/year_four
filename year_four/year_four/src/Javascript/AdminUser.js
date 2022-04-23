@@ -10,6 +10,9 @@ import AddUserComponent from "../Database/components/add-user.component";
 import AddClass from "../Database/components/add-class.components";
 import ClassesList from "../Database/components/class-list.component";
 import User from "../Database/components/user.component";
+import Collapsible from 'react-collapsible';
+import AddCoursework from "../Database/components/add-coursework.component";
+import TextAreaHandle from "./TextAreaHandling";
 
 class AdminUser extends React.Component {
 
@@ -17,7 +20,7 @@ class AdminUser extends React.Component {
         super(props);
         this.state = {
             contacts: "",
-            pageType: "Admin Panel"
+            pageType: "Admin Panel",
         };
     }
 
@@ -28,32 +31,59 @@ class AdminUser extends React.Component {
                 <div className={"container"}>
                     <div className={"container"} style={{marginTop: "2%"}}>
                         <div className={"d-grid gap-2"}>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>
-                                    Add Teacher
-                                </Link>
-                            </Button>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>
-                                    Add Class
-                                </Link>
-                            </Button>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/classList"}  className="nav-link" style={{color: "white"}}>
-                                    Classes
-                                </Link>
-                            </Button>
-                            <Button variant="secondary" size={"1g"}>
-                                <Link to={"/userList"}  className="nav-link" style={{color: "white"}}>
-                                    Users
-                                </Link>
-                            </Button>
-                            <Routes>
-                                <Route exact path="/addUser" element={<AddUserComponent />} />
-                                <Route exact path="/addClass" element={<AddClass />} />
-                                <Route exact path="/classList" element={<ClassesList />} />
-                                <Route exact path="/userList" element={<User />} />
-                            </Routes>
+                            <Collapsible trigger={"Add Teacher"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <AddUserComponent role={"teacher"}/>
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Add Class"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <AddClass />
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Classes"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <ClassesList />
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Users"}>
+                                <div className={"internalCollapseDiv"}>
+                                <br/>
+                                {/*<User />*/}
+                                </div>
+                            </Collapsible>
+
+                            {/*Keeping these here (for now) in case there are issues later*/}
+
+                            {/*<Button variant="secondary" size={"1g"}>*/}
+                            {/*    <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>*/}
+                            {/*        Add Teacher*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
+                            {/*<Button variant="secondary" size={"1g"}>*/}
+                            {/*    <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>*/}
+                            {/*        Add Class*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
+                            {/*<Button variant="secondary" size={"1g"}>*/}
+                            {/*    <Link to={"/classList"}  className="nav-link" style={{color: "white"}}>*/}
+                            {/*        Classes*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
+                            {/*<Button variant="secondary" size={"1g"}>*/}
+                            {/*    <Link to={"/userList"}  className="nav-link" style={{color: "white"}}>*/}
+                            {/*        Users*/}
+                            {/*    </Link>*/}
+                            {/*</Button>*/}
+                            {/*<Routes>*/}
+                            {/*    <Route exact path="/addUser" element={<AddUserComponent />} />*/}
+                            {/*    <Route exact path="/addClass" element={<AddClass />} />*/}
+                            {/*    <Route exact path="/classList" element={<ClassesList />} />*/}
+                            {/*    <Route exact path="/userList" element={<User />} />*/}
+                            {/*</Routes>*/}
 
                             {/*/<ClassesList />*/}
                         </div>

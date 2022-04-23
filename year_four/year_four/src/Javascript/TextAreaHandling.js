@@ -22,6 +22,8 @@ function TextAreaHandle(version) {
                 />
             </div>
             <button type={"submit"} id={"submitTextArea"} onClick={() => {handle(version, inputProps.value)}}>Submit</button>
+            <br/>
+            <br/>
         </div>
     );
 }

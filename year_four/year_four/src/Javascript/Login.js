@@ -42,7 +42,7 @@ class Login extends React.Component {
                             <div id="login-box" className="col-md-12">
                                 {/* <form id="login-form" className="form" action="" method="post" > */}
                                 <form id="login-form" className="form">
-                                    <h3 className="text-center text-black">Login</h3>
+                                    <h3 className="text-center text-black">Welcome</h3>
                                     <div className="form-group">
                                         <label htmlFor="username" className="text-black">Username:</label><br/>
                                         <input type="text" name="username" id="username" value={this.state.username} onChange={this.onInputchange} className="form-control"/>
