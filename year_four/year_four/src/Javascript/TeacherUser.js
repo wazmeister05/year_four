@@ -82,13 +82,19 @@ class TeacherUser extends React.Component {
                             <Collapsible trigger={"Add Student to Course"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
-                                    <AddUserComponent role={"student"}/>
+
                                 </div>
                             </Collapsible>
                             <Collapsible trigger={"Remove Student from Course"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
 
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Add Student to System"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <AddUserComponent role={"student"}/>
                                 </div>
                             </Collapsible>
                             <Collapsible trigger={"Change Student Pairings"}>
@@ -103,6 +109,7 @@ class TeacherUser extends React.Component {
                                 </div>
                             </Collapsible>
                         </div>
+                        <br/>
                     </div>
                 </div>
             </div>

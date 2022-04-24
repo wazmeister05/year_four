@@ -31,10 +31,16 @@ class AdminUser extends React.Component {
                 <div className={"container"}>
                     <div className={"container"} style={{marginTop: "2%"}}>
                         <div className={"d-grid gap-2"}>
-                            <Collapsible trigger={"Add Teacher"}>
+                            <Collapsible trigger={"Add Teacher to System"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
                                     <AddUserComponent role={"teacher"}/>
+                                </div>
+                            </Collapsible>
+                            <Collapsible trigger={"Add Student to System"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <AddUserComponent role={"student"}/>
                                 </div>
                             </Collapsible>
                             <Collapsible trigger={"Add Class"}>

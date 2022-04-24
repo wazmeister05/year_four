@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import UserDataService from "../user.service";
+import {Input, InputGroup, InputGroupText} from "reactstrap";
 export default class AddUserComponent extends Component {
     constructor(props) {
         super(props);
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        //this.onChangeRole = this.onChangeRole.bind(this);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -28,12 +28,6 @@ export default class AddUserComponent extends Component {
             username: e.target.value
         });
     }
-
-    // onChangeRole(e) {
-    //     this.setState({
-    //         role: e.target.value
-    //     });
-    // }
 
     onChangeFirstName(e) {
         this.setState({
@@ -61,6 +55,7 @@ export default class AddUserComponent extends Component {
             lastName: this.state.lastName.toLowerCase(),
             email: this.state.email.toLowerCase()
         };
+
         UserDataService.create(data)
             .then(response => {
                 this.setState({
@@ -103,74 +98,33 @@ export default class AddUserComponent extends Component {
                     </div>
                 ) : (
                     <div>
-                        <form className={"form-inside-input"}>
-                            <div className="form-group">
-                                <label htmlFor="firstName">First Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="firstName"
-                                    required
-                                    value={this.state.firstName}
-                                    onChange={this.onChangeFirstName}
-                                    name="firstName"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="lastName">Last Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="lastName"
-                                    required
-                                    value={this.state.lastName}
-                                    onChange={this.onChangeLastName}
-                                    name="lastName"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="username"
-                                    required
-                                    value={this.state.username}
-                                    onChange={this.onChangeUsername}
-                                    name="username"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="role">Role</label>
-                                {/*<Dropdown options={['student','teacher']} onChange={this.onChangeRole} value={this.state.role} placeholder="Select an option" />*/}
-
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="role"
-                                    required
-                                    placeholder={this.state.role}
-                                    defaultValue={this.state.role}
-                                    onChange={this.onChangeRole}
-                                    name="role"
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    id="email"
-                                    required
-                                    value={this.state.email}
-                                    onChange={this.onChangeEmail}
-                                    name="email"
-                                />
-                            </div>
-                            <br/>
-                        </form>
-                        <button type="submit" onClick={this.saveUser} className="btn btn-success">
+                        <InputGroup>
+                            <InputGroupText>First Name</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"firstName"} name={"firstName"}
+                                   required value={this.state.firstName} onChange={this.onChangeFirstName} placeholder={"Enter First Name..."} />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Surname</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"lastName"} name={"lastName"}
+                                   required value={this.state.lastName} onChange={this.onChangeLastName} placeholder={"Enter Surname..."} />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Username</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"username"} name={"username"}
+                                   required value={this.state.username} onChange={this.onChangeUsername} placeholder={"Enter Username..."} />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Role</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"role"} name={"role"}
+                                   required value={this.state.role} placeholder={this.state.role} disabled />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Email</InputGroupText>
+                            <Input type={"email"} className={"form-control"} id={"email"} name={"email"}
+                                   required value={this.state.email} onChange={this.onChangeEmail} placeholder={"Enter Email..."} />
+                        </InputGroup><br/>
+                        <button type="submit" onClick={this.saveUser} className="btn btn-success"
+                            disabled={!this.state.username || !this.state.firstName || !this.state.lastName || !this.state.email}>
                             Submit
                         </button>
                     </div>

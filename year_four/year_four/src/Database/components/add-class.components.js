@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ClassDataService from "../class.service";
+import {Input, InputGroup, InputGroupText} from "reactstrap";
 export default class AddClass extends Component {
     constructor(props) {
         super(props);
@@ -76,45 +77,23 @@ export default class AddClass extends Component {
                     </div>
                 ) : (
                     <div>
-                        <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                required
-                                value={this.state.title}
-                                onChange={this.onChangeTitle}
-                                name="title"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                required
-                                value={this.state.description}
-                                onChange={this.onChangeDescription}
-                                name="description"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="teacher">Teacher</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="teacher"
-                                required
-                                value={this.state.teacher}
-                                onChange={this.onChangeTeacher}
-                                name="teacher"
-                            />
-                        </div>
-                        <br/>
-                        <button onClick={this.saveClass} className="btn btn-success">
-                            Submit
+                        <InputGroup>
+                                <InputGroupText>Class Code</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"title"} name={"title"}
+                                   required value={this.state.title} onChange={this.onChangeTitle} placeholder={"Enter Class Code..."} />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Class Name</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"description"} name={"description"}
+                                   required value={this.state.description} onChange={this.onChangeDescription} placeholder={"Enter Class Name..."} />
+                        </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Teacher</InputGroupText>
+                            <Input type={"text"} className={"form-control"} id={"teacher"} name={"teacher"}
+                                   required value={this.state.teacher} onChange={this.onChangeTeacher} placeholder={"Enter Teacher..."} />
+                        </InputGroup><br/>
+                        <button onClick={this.saveClass} className="btn btn-success"
+                                disabled={!this.state.title || !this.state.description || !this.state.teacher}>Submit
                         </button>
                     </div>
                 )}
@@ -122,3 +101,4 @@ export default class AddClass extends Component {
         );
     }
 }
+
