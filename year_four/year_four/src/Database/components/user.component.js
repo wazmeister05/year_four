@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserDataService from "../user.service";
+import ClassDataService from "../class.service";
 export default class User extends Component {
     constructor(props) {
         super(props);
@@ -7,25 +8,38 @@ export default class User extends Component {
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeRole = this.onChangeRole.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
         this.getUser = this.getUser.bind(this);
+        this.getAllUsers = this.getAllUsers.bind(this);
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        this.setActiveUser = this.setActiveUser.bind(this);
         this.state = {
+            allUsers: [],
+            currentIndex: -1,
             currentUser: {
                 id: null,
                 username: "",
                 firstName: "",
                 lastName: "",
                 role: "",
-                email: ""
+                password: ""
             },
             message: ""
         };
     }
     componentDidMount() {
-        this.getUser(this.props.match.params.id);
+        this.getAllUsers();
+        console.log("users retrieved")
     }
+
+    setActiveUser(user, index) {
+        this.setState({
+            currentUser: user,
+            currentIndex: index
+        });
+    }
+
     onChangeUsername(e) {
         const username = e.target.value;
         this.setState(function(prevState) {
@@ -47,13 +61,13 @@ export default class User extends Component {
             }
         }));
     }
-    onChangeEmail(e) {
-        const email = e.target.value;
+    onChangePassword(e) {
+        const password = e.target.value;
 
         this.setState(prevState => ({
             currentUser: {
                 ...prevState.currentUser,
-                email: email
+                password: password
             }
         }));
     }
@@ -91,6 +105,19 @@ export default class User extends Component {
             });
     }
 
+    getAllUsers() {
+        UserDataService.getAll()
+            .then(response => {
+                this.setState({
+                    allUsers: response.data
+                });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
     updateUser() {
         UserDataService.update(
             this.state.currentUser.id,
@@ -106,8 +133,8 @@ export default class User extends Component {
                 console.log(e);
             });
     }
-    deleteUser() {
-        UserDataService.delete(this.state.currentUser.id)
+    deleteUser(id) {
+        UserDataService.delete(id)
             .then(response => {
                 console.log(response.data);
                 this.props.history.push('/users')
@@ -118,91 +145,63 @@ export default class User extends Component {
     }
 
     render() {
-        const { currentUser } = this.state;
+        const { currentUser, allUsers, currentIndex } = this.state;
         return (
             <div>
-                {currentUser ? (
-                    <div className="edit-form">
-                        <h4>User</h4>
-                        <form>
-                            <div className="form-group">
-                                <label htmlFor="title">Title</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="username"
-                                    value={currentUser.username}
-                                    onChange={this.onChangeUsername}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Role</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="role"
-                                    value={currentUser.role}
-                                    onChange={this.onChangeRole}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Email</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="email"
-                                    value={currentUser.role}
-                                    onChange={this.onChangeEmail}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Last Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="lastName"
-                                    value={currentUser.lastName}
-                                    onChange={this.onChangeLastName}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">First Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="firstName"
-                                    value={currentUser.firstName}
-                                    onChange={this.onChangeFirstName}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>
-                                    <strong>Status:</strong>
-                                </label>
-                            </div>
-                        </form>
+                <div className="list row">
+                    <div className="col-md-8">
+                        <ul className="list-group" id={"userListID"}>
+                            {allUsers &&
+                            allUsers.map((user, index) => (
+                                <li
+                                    className={
+                                        "list-group-item " +
+                                        (index === currentIndex ? "active" : "")
+                                    }
+                                    onClick={() => this.setActiveUser(user, index)}
+                                    key={index}
+                                >
+                                    {user.firstName} {user.lastName}
+                                </li>
+                            ))}
+                        </ul>
+                        <br/>
+                    </div>
+                    <div className="col-md-4">
+                        {currentUser ? (
+                            <div>
+                                {/*TODO: Fix this*/}
+                                {/*This doesn't work as the delete function is missing from node*/}
+                                {/*<button onClick={() => {this.deleteUser(currentUser.id)}}>*/}
+                                {/*    Delete User*/}
+                                {/*</button>*/}
 
-                        <button
-                            className="badge badge-danger mr-2"
-                            onClick={this.deleteUser}
-                        >
-                            Delete
-                        </button>
-                        <button
-                            type="submit"
-                            className="badge badge-success"
-                            onClick={this.updateUser}
-                        >
-                            Update
-                        </button>
-                        <p>{this.state.message}</p>
+                                <div>
+                                    <label>
+                                        <strong>Username:</strong>
+                                    </label>{" "}
+                                    {currentUser.username}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Password:</strong>
+                                    </label>{" "}
+                                    {currentUser.password}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Role:</strong>
+                                    </label>{" "}
+                                    {currentUser.role}
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <br />
+                            </div>
+                        )}
                     </div>
-                ) : (
-                    <div>
-                        <br />
-                        <p>Please click on a User...</p>
-                    </div>
-                )}
+                </div>
             </div>
         );
     }

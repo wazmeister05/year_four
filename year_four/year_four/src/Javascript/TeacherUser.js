@@ -30,21 +30,22 @@ class TeacherUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            code: "Select Class",
+            t_code: "Select Class",
+            t_chosen: false
         };
     }
 
     setCourse(course){
-        //this.setState({code: course});
+        this.setState({t_code: course});
+        this.setState({t_chosen: true});
         document.getElementById("headerTitleTeacher").innerText = course;
-        this.setState({code: course});
+        document.getElementById("selectClassFirst").style.opacity = "100";
     }
 
     render() {
         return(
             <div>
                 <NavbarPanel type={this.props.user_details.username}/>
-
                 <br/>
                 <div className={"text-center"} id={"courseChoice"}>
                     <Dropdown>
@@ -58,12 +59,13 @@ class TeacherUser extends React.Component {
                         </Dropdown.Menu>
                     </Dropdown>
                     <br/>
-                    <h1 id={"headerTitleTeacher"}>{this.state.code}</h1>
+                    <h1 id={"headerTitleTeacher"}>{this.state.t_code}</h1>
                     <div className={"container"} style={{marginTop: "2%"}}>
+                        <div id={"selectClassFirst"}>
                         <div className={"d-grid gap-2"}>
                             <Collapsible trigger={"Add New Coursework"}>
                                 <div className={"internalCollapseDiv"}>
-                                    <AddCoursework courseCode={this.state.code} />
+                                    <AddCoursework courseCode={this.state.t_code} />
                                 </div>
                             </Collapsible>
 
@@ -105,11 +107,12 @@ class TeacherUser extends React.Component {
                             </Collapsible>
                             <Collapsible trigger={"Class Announcement"}>
                                 <div className={"internalCollapseDiv"}>
-                                    <TextAreaHandle version={"announce"}/>
+                                    <TextAreaHandle classCode={this.state.t_code}/>
                                 </div>
                             </Collapsible>
                         </div>
                         <br/>
+                    </div>
                     </div>
                 </div>
             </div>

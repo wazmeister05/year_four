@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ClassDataService from "../class.service";
-import { Link } from "react-router-dom";
+
 export default class ClassesList extends Component {
     constructor(props) {
         super(props);
@@ -19,6 +19,7 @@ export default class ClassesList extends Component {
     }
     componentDidMount() {
         this.retrieveClasses();
+        console.log("classes retrieved")
     }
     onChangeSearchTitle(e) {
         const searchTitle = e.target.value;
@@ -92,7 +93,7 @@ export default class ClassesList extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Search by title"
+                            placeholder="Search by class code"
                             value={searchTitle}
                             onChange={this.onChangeSearchTitle}
                         />
@@ -107,9 +108,8 @@ export default class ClassesList extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-6">
-                    <h4>Class List</h4>
-                    <ul className="list-group">
+                <div className="col-md-8">
+                    <ul className="list-group" id={"classListID"}>
                         {classes &&
                         classes.map((tutorial, index) => (
                             <li
@@ -120,20 +120,20 @@ export default class ClassesList extends Component {
                                 onClick={() => this.setActiveClass(tutorial, index)}
                                 key={index}
                             >
-                                {tutorial.title} ({tutorial.description}) - {tutorial.teacher}
+                                <span className={"capitalise"}>{tutorial.description} - {tutorial.teacher}</span> ({tutorial.title})
                             </li>
                         ))}
                     </ul>
+                    <br/>
                     {/*<button className="m-3 btn btn-sm btn-danger" onClick={this.removeAllClasses}>Remove All*/}
                     {/*</button>*/}
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     {currentClass ? (
                         <div>
-                            <h4>Class</h4>
-                            {/*<button onClick={this.removeClass(currentClass.id)}>*/}
-                            {/*    Delete Class*/}
-                            {/*</button>*/}
+                            <button onClick={() => {this.removeClass(currentClass.id)}}>
+                                Delete Class
+                            </button>
                             <div>
                                 <label>
                                     <strong>Title:</strong>
@@ -144,19 +144,18 @@ export default class ClassesList extends Component {
                                 <label>
                                     <strong>Description:</strong>
                                 </label>{" "}
-                                {currentClass.description}
+                                <span className={"capitalise"}>{currentClass.description}</span>
                             </div>
                             <div>
                                 <label>
                                     <strong>Teacher:</strong>
                                 </label>{" "}
-                                {currentClass.teacher}
+                                <span className={"capitalise"}>{currentClass.teacher}</span>
                             </div>
                         </div>
                     ) : (
                         <div>
                             <br />
-                            <p>Please click on a Class...</p>
                         </div>
                     )}
                 </div>

@@ -8,6 +8,14 @@ html, body {
     background-color: #C7D3D4FF;
 }
 
+#selectClassFirst{
+    opacity: 0;
+}
+
+ul#userListID li, .capitalise{
+    text-transform: capitalize;
+}
+
 .wholeSite{
     opacity:1;
     background-color: #C7D3D4FF;

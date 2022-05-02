@@ -58,7 +58,7 @@ class AdminUser extends React.Component {
                             <Collapsible trigger={"Users"}>
                                 <div className={"internalCollapseDiv"}>
                                 <br/>
-                                {/*<User />*/}
+                                <User />
                                 </div>
                             </Collapsible>
 
@@ -90,8 +90,6 @@ class AdminUser extends React.Component {
                             {/*    <Route exact path="/classList" element={<ClassesList />} />*/}
                             {/*    <Route exact path="/userList" element={<User />} />*/}
                             {/*</Routes>*/}
-
-                            {/*/<ClassesList />*/}
                         </div>
                     </div>
                 </div>

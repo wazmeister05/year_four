@@ -9,7 +9,7 @@ export default class AddUserComponent extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
         this.saveUser = this.saveUser.bind(this);
         this.newUser = this.newUser.bind(this);
         this.state = {
@@ -18,7 +18,7 @@ export default class AddUserComponent extends Component {
             role: props.role,
             firstName: "",
             lastName: "",
-            email: "",
+            password: "",
             submitted: false
         };
     }
@@ -41,9 +41,9 @@ export default class AddUserComponent extends Component {
         });
     }
 
-    onChangeEmail(e) {
+    onChangePassword(e) {
         this.setState({
-            email: e.target.value
+            password: e.target.value
         });
     }
 
@@ -53,7 +53,7 @@ export default class AddUserComponent extends Component {
             role: this.state.role.toLowerCase(),
             firstName: this.state.firstName.toLowerCase(),
             lastName: this.state.lastName.toLowerCase(),
-            email: this.state.email.toLowerCase()
+            password: this.state.password.toLowerCase()
         };
 
         UserDataService.create(data)
@@ -64,7 +64,7 @@ export default class AddUserComponent extends Component {
                     role: response.data.role,
                     firstName: response.data.firstName,
                     lastName: response.data.lastName,
-                    email: response.data.email,
+                    password: response.data.password,
                     submitted: true
                 });
                 console.log(response.data);
@@ -77,10 +77,9 @@ export default class AddUserComponent extends Component {
         this.setState({
             id: null,
             username: "",
-            // role: "",
             firstName: "",
             lastName: "",
-            email: "",
+            password: "",
             submitted: false
         });
     }
@@ -100,32 +99,27 @@ export default class AddUserComponent extends Component {
                     <div>
                         <InputGroup>
                             <InputGroupText>First Name</InputGroupText>
-                            <Input type={"text"} className={"form-control"} id={"firstName"} name={"firstName"}
+                            <Input type={"text"} className={"form-control"} name={"firstNameIN"} pattern={"\d*"}
                                    required value={this.state.firstName} onChange={this.onChangeFirstName} placeholder={"Enter First Name..."} />
                         </InputGroup><br/>
                         <InputGroup>
                             <InputGroupText>Surname</InputGroupText>
-                            <Input type={"text"} className={"form-control"} id={"lastName"} name={"lastName"}
+                            <Input type={"text"} className={"form-control"} name={"lastNameIN"} pattern={"\d*"}
                                    required value={this.state.lastName} onChange={this.onChangeLastName} placeholder={"Enter Surname..."} />
                         </InputGroup><br/>
                         <InputGroup>
                             <InputGroupText>Username</InputGroupText>
-                            <Input type={"text"} className={"form-control"} id={"username"} name={"username"}
+                            <Input type={"text"} className={"form-control"} name={"usernameIN"}
                                    required value={this.state.username} onChange={this.onChangeUsername} placeholder={"Enter Username..."} />
                         </InputGroup><br/>
                         <InputGroup>
-                            <InputGroupText>Role</InputGroupText>
-                            <Input type={"text"} className={"form-control"} id={"role"} name={"role"}
-                                   required value={this.state.role} placeholder={this.state.role} disabled />
-                        </InputGroup><br/>
-                        <InputGroup>
-                            <InputGroupText>Email</InputGroupText>
-                            <Input type={"email"} className={"form-control"} id={"email"} name={"email"}
-                                   required value={this.state.email} onChange={this.onChangeEmail} placeholder={"Enter Email..."} />
+                            <InputGroupText>Password</InputGroupText>
+                            <Input type={"password"} className={"form-control"} name={"passwordIN"}
+                                   required value={this.state.password} onChange={this.onChangePassword} placeholder={"Enter Password..."} />
                         </InputGroup><br/>
                         <button type="submit" onClick={this.saveUser} className="btn btn-success"
-                            disabled={!this.state.username || !this.state.firstName || !this.state.lastName || !this.state.email}>
-                            Submit
+                            disabled={!this.state.username || !this.state.firstName || !this.state.lastName || !this.state.password}>
+                            Submit {this.state.role}
                         </button>
                     </div>
                 )}

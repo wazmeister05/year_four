@@ -93,7 +93,7 @@ export default class AddClass extends Component {
                                    required value={this.state.teacher} onChange={this.onChangeTeacher} placeholder={"Enter Teacher..."} />
                         </InputGroup><br/>
                         <button onClick={this.saveClass} className="btn btn-success"
-                                disabled={!this.state.title || !this.state.description || !this.state.teacher}>Submit
+                                disabled={!this.state.title || !this.state.description || !this.state.teacher}>Submit Class
                         </button>
                     </div>
                 )}
