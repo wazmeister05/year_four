@@ -1,25 +1,25 @@
 import http from "./http-common";
 class CourseworkDataService {
     getAll() {
-        return http.get("/users");
+        return http.get("/coursework");
     }
     get(id) {
-        return http.get(`/users/${id}`);
+        return http.get(`/coursework/${id}`);
     }
     create(data) {
-        return http.post("/users", data);
+        return http.post("/coursework", data);
     }
     update(id, data) {
-        return http.put(`/users/${id}`, data);
+        return http.put(`/coursework/${id}`, data);
     }
     delete(id) {
-        return http.delete(`/users/${id}`);
+        return http.delete(`/coursework/${id}`);
     }
     deleteAll() {
-        return http.delete(`/users`);
+        return http.delete(`/coursework`);
     }
     findByTitle(title) {
-        return http.get(`/users?title=${title}`);
+        return http.get(`/coursework?title=${title}`);
     }
 }
 export default new CourseworkDataService();

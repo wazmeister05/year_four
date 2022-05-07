@@ -5,7 +5,7 @@ import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import {Input, InputGroup, InputGroupText} from "reactstrap";
-import UserDataService from "../user.service";
+import CourseworkDataService from "../coursework.service";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -42,6 +42,7 @@ export class AddCourseworkComponent extends Component {
     saveCoursework() {
         let data = {
             title: this.state.title.toLowerCase(),
+            courseCode: this.state.courseCode,
             content: this.state.files,
             teacher: this.props.teacher.toLowerCase()
         };
@@ -50,6 +51,7 @@ export class AddCourseworkComponent extends Component {
             .then(response => {
                 this.setState({
                     id: response.data.id,
+                    courseCode: response.data.courseCode,
                     title: response.data.title,
                     content: response.data.content,
                     teacher: response.data.teacher

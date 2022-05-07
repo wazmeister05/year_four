@@ -65,7 +65,7 @@ class TeacherUser extends React.Component {
                         <div className={"d-grid gap-2"}>
                             <Collapsible trigger={"Add New Coursework"}>
                                 <div className={"internalCollapseDiv"}>
-                                    <AddCourseworkComponent courseCode={this.state.t_code} />
+                                    <AddCourseworkComponent courseCode={this.state.t_code} teacher={this.props.user_details.username} />
                                 </div>
                             </Collapsible>
 
