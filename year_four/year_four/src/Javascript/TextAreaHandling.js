@@ -34,7 +34,6 @@ export default class TextAreaHandling extends Component {
         };
         AnnouncementDataService.create(data)
             .then(response => {
-                console.log("Saving 2")
                 this.setState({
                     id: response.data.id,
                     announcementText: response.data.announcementText,
@@ -48,10 +47,22 @@ export default class TextAreaHandling extends Component {
             });
     }
 
+    // searchAll() {
+    // AnnouncementDataService.findAll(this.state.searchTitle)
+    //     .then(response => {
+    //         this.setState({
+    //             classes: response.data
+    //         });
+    //         console.log(response.data);
+    //     })
+    //     .catch(e => {
+    //         console.log(e);
+    //     });
+    // }
+
     render() {
         return (
             <div>
-                {console.log(this.props.classCode)}
                 <div>
                 <textarea id={"announcementBox"}
                           onChange={this.onChangeText}
@@ -64,18 +75,4 @@ export default class TextAreaHandling extends Component {
             </div>
         );
     }
-
-
-// function searchAll() {
-//     AnnouncementDataService.findAll(this.state.searchTitle)
-//         .then(response => {
-//             this.setState({
-//                 classes: response.data
-//             });
-//             console.log(response.data);
-//         })
-//         .catch(e => {
-//             console.log(e);
-//         });
-// }
 }

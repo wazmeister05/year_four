@@ -4,15 +4,11 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
-import {Link, Route, Routes} from "react-router-dom";
-import {Button} from "react-bootstrap";
 import AddUserComponent from "../Database/components/add-user.component";
 import AddClass from "../Database/components/add-class.components";
 import ClassesList from "../Database/components/class-list.component";
 import User from "../Database/components/user.component";
 import Collapsible from 'react-collapsible';
-import AddCoursework from "../Database/components/add-coursework.component";
-import TextAreaHandle from "./TextAreaHandling";
 
 class AdminUser extends React.Component {
 

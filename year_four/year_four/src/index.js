@@ -4,8 +4,8 @@ import {BrowserRouter, HashRouter} from "react-router-dom";
 import Main from './Javascript/Main';
 
 ReactDOM.render(
-    <HashRouter>
+    <React.StrictMode>
         <Main/>
-    </HashRouter>,
+    </React.StrictMode>,
     document.getElementById('root')
 );

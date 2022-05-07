@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import UserDataService from "../user.service";
 import {Input, InputGroup, InputGroupText} from "reactstrap";

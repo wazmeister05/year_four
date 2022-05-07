@@ -14,6 +14,7 @@ class Login extends React.Component {
     }
 
     onInputchange(event){
+        event.preventDefault();
         this.setState({
             [event.target.name]: event.target.value
         })

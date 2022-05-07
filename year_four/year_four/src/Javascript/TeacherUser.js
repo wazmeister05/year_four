@@ -5,10 +5,10 @@ import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
 import {Dropdown} from "react-bootstrap";
-import AddCoursework from "../Database/components/add-coursework.component";
 import TextAreaHandle from "./TextAreaHandling";
 import Collapsible from 'react-collapsible';
 import AddUserComponent from "../Database/components/add-user.component";
+import {AddCourseworkComponent} from "../Database/components/add-coursework.component";
 
 let coll = document.getElementsByClassName("collapsible");
 let i;
@@ -65,7 +65,7 @@ class TeacherUser extends React.Component {
                         <div className={"d-grid gap-2"}>
                             <Collapsible trigger={"Add New Coursework"}>
                                 <div className={"internalCollapseDiv"}>
-                                    <AddCoursework courseCode={this.state.t_code} />
+                                    <AddCourseworkComponent courseCode={this.state.t_code} />
                                 </div>
                             </Collapsible>
 
