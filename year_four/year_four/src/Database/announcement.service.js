@@ -4,7 +4,7 @@ class AnnouncementDataService {
         return http.post("/announcements", data);
     }
     findAll(classCode) {
-        return http.get(`/announcements?title=${classCode}`);
+        return http.get("/announcements", classCode);
     }
 }
 export default new AnnouncementDataService();

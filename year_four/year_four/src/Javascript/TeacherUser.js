@@ -8,7 +8,7 @@ import {Dropdown} from "react-bootstrap";
 import TextAreaHandle from "./TextAreaHandling";
 import Collapsible from 'react-collapsible';
 import AddUserComponent from "../Database/components/add-user.component";
-import {AddCourseworkComponent} from "../Database/components/add-coursework.component";
+
 
 let coll = document.getElementsByClassName("collapsible");
 let i;
@@ -65,7 +65,8 @@ class TeacherUser extends React.Component {
                         <div className={"d-grid gap-2"}>
                             <Collapsible trigger={"Add New Coursework"}>
                                 <div className={"internalCollapseDiv"}>
-                                    <AddCourseworkComponent courseCode={this.state.t_code} teacher={this.props.user_details.username} />
+                                    <br/>
+                                    <TextAreaHandle classCode={this.state.t_code}/>
                                 </div>
                             </Collapsible>
 
@@ -103,11 +104,6 @@ class TeacherUser extends React.Component {
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
 
-                                </div>
-                            </Collapsible>
-                            <Collapsible trigger={"Class Announcement"}>
-                                <div className={"internalCollapseDiv"}>
-                                    <TextAreaHandle classCode={this.state.t_code}/>
                                 </div>
                             </Collapsible>
                         </div>

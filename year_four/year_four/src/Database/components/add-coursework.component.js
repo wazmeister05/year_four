@@ -17,7 +17,7 @@ export class AddCourseworkComponent extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.state = {
             title: "",
-            files:[]
+            files: null
         };
     }
 
@@ -34,19 +34,34 @@ export class AddCourseworkComponent extends Component {
     upload(){
         this.saveCoursework();
         window.alert("Uploaded");
+        console.log(this.state.files);
+        console.log(typeof this.state.files);
         // Now clear the current component
-        this.setState({files:[]});
+        this.setState({files:null});
         this.pond.removeFiles();
     }
 
+    retrieveAssignments() {
+        CourseworkDataService.get(this.props.courseCode)
+            .then(response => {
+                this.setState({
+                    classes: response.data
+                });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    // TODO: problem with this...
     saveCoursework() {
         let data = {
             title: this.state.title.toLowerCase(),
-            courseCode: this.state.courseCode,
-            content: this.state.files,
+            courseCode: this.props.courseCode,
+            content: JSON.stringify(this.state.files),
             teacher: this.props.teacher.toLowerCase()
         };
-
         CourseworkDataService.create(data)
             .then(response => {
                 this.setState({
@@ -76,7 +91,7 @@ export class AddCourseworkComponent extends Component {
                     ref={ref => (this.pond = ref)}
                     allowMultiple={false}
                     allowReorder={true}
-                    maxFiles={3}
+                    maxFiles={1}
                     instantUpload={false}
                     name="files"
                     oninit={() => this.handleInit()}

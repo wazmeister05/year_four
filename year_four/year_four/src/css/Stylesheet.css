@@ -112,6 +112,17 @@ ul#userListID li, .capitalise{
     border-radius: 5px;
 }
 
+#headerTitleStudent{
+    text-align: center;
+    font-size: 300%;
+    background-Color: #555;
+    color: white;
+    padding: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+}
+
 #announcementBox{
     width: 50%;
     height: 200px;

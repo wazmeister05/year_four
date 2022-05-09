@@ -84,6 +84,7 @@ export default class ClassesList extends Component {
                 console.log(e);
             });
     }
+
     render() {
         const { searchTitle, classes, currentClass, currentIndex } = this.state;
         return (
