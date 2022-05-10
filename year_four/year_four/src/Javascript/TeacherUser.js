@@ -8,6 +8,7 @@ import {Dropdown} from "react-bootstrap";
 import TextAreaHandle from "./TextAreaHandling";
 import Collapsible from 'react-collapsible';
 import AddUserComponent from "../Database/components/add-user.component";
+import Submissions from "./Submissions";
 
 
 let coll = document.getElementsByClassName("collapsible");
@@ -79,7 +80,7 @@ class TeacherUser extends React.Component {
                             <Collapsible trigger={"View Student Submissions"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
-
+                                    <Submissions />
                                 </div>
                             </Collapsible>
                             <Collapsible trigger={"Add Student to Course"}>

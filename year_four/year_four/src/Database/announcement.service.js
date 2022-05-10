@@ -6,5 +6,8 @@ class AnnouncementDataService {
     findAll(classCode) {
         return http.get("/announcements", classCode);
     }
+    moss(language){
+        return http.post("/announcements", language);
+    }
 }
 export default new AnnouncementDataService();

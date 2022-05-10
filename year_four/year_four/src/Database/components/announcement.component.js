@@ -10,7 +10,8 @@ export default class Announcements extends Component {
         this.setActiveClass = this.setActiveClass.bind(this);
         this.searchTitle = this.searchTitle.bind(this);
         this.state = {
-            content: []
+            content: [],
+            classChosen: {}
         };
     }
 
@@ -29,10 +30,31 @@ export default class Announcements extends Component {
                 this.setState({
                     content: response.data
                 });
+                this.presentClass();
             })
             .catch(e => {
                 console.log(e);
             });
+    }
+
+    presentClass(){
+        let classes = this.state.content;
+
+        let mostRecentDate = 0;
+        let mostRecentClass = {};
+        console.log(classes);
+        classes.forEach((class1) => {
+            if(class1.classCode === this.props.classCode) {
+                if(class1.announcementDate > mostRecentDate) {
+                    mostRecentClass = class1;
+                    mostRecentDate = class1.announcementDate;
+                }
+            }
+        });
+
+        this.setState({
+            classChosen: mostRecentClass
+        });
     }
 
     refreshList() {
@@ -68,7 +90,7 @@ export default class Announcements extends Component {
             <div>
                 <div>
                     <button onClick={() => {this.retrieveClasses();}} className={"btn btn-success"}>Update {this.props.classCode} coursework</button>
-                    <p>{typeof this.state.content}</p>
+                    <p>{typeof this.state.classChosen}</p>
                 </div>
                 <br/>
             </div>
