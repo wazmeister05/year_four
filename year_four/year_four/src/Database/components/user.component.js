@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import UserDataService from "../user.service";
-import ClassDataService from "../class.service";
 export default class User extends Component {
     constructor(props) {
         super(props);
@@ -9,6 +8,7 @@ export default class User extends Component {
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeRole = this.onChangeRole.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.getUser = this.getUser.bind(this);
         this.getAllUsers = this.getAllUsers.bind(this);
         this.updateUser = this.updateUser.bind(this);
@@ -23,7 +23,8 @@ export default class User extends Component {
                 firstName: "",
                 lastName: "",
                 role: "",
-                password: ""
+                password: "",
+                email: ""
             },
             message: ""
         };
@@ -47,6 +48,17 @@ export default class User extends Component {
                 currentUser: {
                     ...prevState.currentUser,
                     username: username
+                }
+            };
+        });
+    }
+    onChangeEmail(e) {
+        const email = e.target.value;
+        this.setState(function(prevState) {
+            return {
+                currentEmail: {
+                    ...prevState.currentEmail,
+                    username: email
                 }
             };
         });
@@ -170,12 +182,6 @@ export default class User extends Component {
                     <div className="col-md-4">
                         {currentUser ? (
                             <div>
-                                {/*TODO: Fix this*/}
-                                {/*This doesn't work as the delete function is missing from node*/}
-                                {/*<button onClick={() => {this.deleteUser(currentUser.id)}}>*/}
-                                {/*    Delete User*/}
-                                {/*</button>*/}
-
                                 <div>
                                     <label>
                                         <strong>Username:</strong>
@@ -193,6 +199,12 @@ export default class User extends Component {
                                         <strong>Role:</strong>
                                     </label>{" "}
                                     {currentUser.role}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Email:</strong>
+                                    </label>{" "}
+                                    {currentUser.email}
                                 </div>
                             </div>
                         ) : (

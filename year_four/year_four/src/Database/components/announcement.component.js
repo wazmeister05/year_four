@@ -11,7 +11,8 @@ export default class Announcements extends Component {
         this.searchTitle = this.searchTitle.bind(this);
         this.state = {
             content: [],
-            classChosen: {}
+            classChosen: {},
+            line: ""
         };
     }
 
@@ -55,6 +56,16 @@ export default class Announcements extends Component {
         this.setState({
             classChosen: mostRecentClass
         });
+
+        let text = document.createElement("text");
+        text.textContent = mostRecentClass.announcementText;
+
+        let img = document.createElement("img");
+        img.src = mostRecentClass.image;
+
+        document.getElementById("content").appendChild(text);
+        document.getElementById("content").appendChild(img);
+
     }
 
     refreshList() {
@@ -90,7 +101,7 @@ export default class Announcements extends Component {
             <div>
                 <div>
                     <button onClick={() => {this.retrieveClasses();}} className={"btn btn-success"}>Update {this.props.classCode} coursework</button>
-                    <p>{typeof this.state.classChosen}</p>
+                    <div id={"content"}> </div>
                 </div>
                 <br/>
             </div>

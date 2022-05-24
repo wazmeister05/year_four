@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
@@ -9,8 +9,10 @@ import AddClass from "../Database/components/add-class.components";
 import ClassesList from "../Database/components/class-list.component";
 import User from "../Database/components/user.component";
 import Collapsible from 'react-collapsible';
+import axios from "axios";
 
 class AdminUser extends React.Component {
+
 
     constructor(props) {
         super(props);
@@ -20,7 +22,7 @@ class AdminUser extends React.Component {
         };
     }
 
-    render() {
+    render(){
         return (
             <div>
                 <NavbarPanel type={"Admin Panel"}/>
@@ -57,43 +59,33 @@ class AdminUser extends React.Component {
                                 <User />
                                 </div>
                             </Collapsible>
-
-                            {/*Keeping these here (for now) in case there are issues later*/}
-
-                            {/*<Button variant="secondary" size={"1g"}>*/}
-                            {/*    <Link to={"/addUser"} className="nav-link" style={{color: "white"}}>*/}
-                            {/*        Add Teacher*/}
-                            {/*    </Link>*/}
-                            {/*</Button>*/}
-                            {/*<Button variant="secondary" size={"1g"}>*/}
-                            {/*    <Link to={"/addClass"} className="nav-link" style={{color: "white"}}>*/}
-                            {/*        Add Class*/}
-                            {/*    </Link>*/}
-                            {/*</Button>*/}
-                            {/*<Button variant="secondary" size={"1g"}>*/}
-                            {/*    <Link to={"/classList"}  className="nav-link" style={{color: "white"}}>*/}
-                            {/*        Classes*/}
-                            {/*    </Link>*/}
-                            {/*</Button>*/}
-                            {/*<Button variant="secondary" size={"1g"}>*/}
-                            {/*    <Link to={"/userList"}  className="nav-link" style={{color: "white"}}>*/}
-                            {/*        Users*/}
-                            {/*    </Link>*/}
-                            {/*</Button>*/}
-                            {/*<Routes>*/}
-                            {/*    <Route exact path="/addUser" element={<AddUserComponent />} />*/}
-                            {/*    <Route exact path="/addClass" element={<AddClass />} />*/}
-                            {/*    <Route exact path="/classList" element={<ClassesList />} />*/}
-                            {/*    <Route exact path="/userList" element={<User />} />*/}
-                            {/*</Routes>*/}
                         </div>
                     </div>
                 </div>
+
+                <button onClick={() =>
+                    axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello").then((response) => {
+                        console.log(response.data);})}>Connected?
+                </button>
             </div>
         )
     }
 
-    componentDidMount() {
+    componentDidMount(){
+
+        let classes = async () => {
+            try {
+                const request = await axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello");
+                console.log(request.data);
+                let classData = request.data;
+
+            } catch (error){
+                alert(error);
+            }
+        };
+        classes();
+
+
         let coll = document.getElementsByClassName("collapsible");
         for (let i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function () {
@@ -107,6 +99,9 @@ class AdminUser extends React.Component {
             });
         }
     }
+
+
+
 }
 
 export default AdminUser;

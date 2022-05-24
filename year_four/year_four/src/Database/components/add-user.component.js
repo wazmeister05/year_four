@@ -9,6 +9,7 @@ export default class AddUserComponent extends Component {
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
         this.saveUser = this.saveUser.bind(this);
         this.newUser = this.newUser.bind(this);
         this.state = {
@@ -18,6 +19,7 @@ export default class AddUserComponent extends Component {
             firstName: "",
             lastName: "",
             password: "",
+            email: "",
             submitted: false
         };
     }
@@ -46,13 +48,20 @@ export default class AddUserComponent extends Component {
         });
     }
 
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
     saveUser() {
         let data = {
             username: this.state.username.toLowerCase(),
             role: this.state.role.toLowerCase(),
             firstName: this.state.firstName.toLowerCase(),
             lastName: this.state.lastName.toLowerCase(),
-            password: this.state.password.toLowerCase()
+            password: this.state.password.toLowerCase(),
+            email: this.state.email
         };
 
         UserDataService.create(data)
@@ -64,6 +73,7 @@ export default class AddUserComponent extends Component {
                     firstName: response.data.firstName,
                     lastName: response.data.lastName,
                     password: response.data.password,
+                    email: response.data.email,
                     submitted: true
                 });
                 console.log(response.data);
@@ -79,6 +89,7 @@ export default class AddUserComponent extends Component {
             firstName: "",
             lastName: "",
             password: "",
+            email: "",
             submitted: false
         });
     }
@@ -116,10 +127,17 @@ export default class AddUserComponent extends Component {
                             <Input type={"password"} className={"form-control"} name={"passwordIN"}
                                    required value={this.state.password} onChange={this.onChangePassword} placeholder={"Enter Password..."} />
                         </InputGroup><br/>
+                        <InputGroup>
+                            <InputGroupText>Email</InputGroupText>
+                            <Input type={"email"} className={"form-control"} name={"emailIN"}
+                                   required value={this.state.email} onChange={this.onChangeEmail} placeholder={"Enter email..."} />
+                        </InputGroup><br/>
                         <button type="submit" onClick={this.saveUser} className="btn btn-success"
                             disabled={!this.state.username || !this.state.firstName || !this.state.lastName || !this.state.password}>
                             Submit {this.state.role}
                         </button>
+
+
                     </div>
                 )}
             </div>

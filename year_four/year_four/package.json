@@ -3,6 +3,7 @@
   "homepage": "./",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
