@@ -3,7 +3,7 @@ class AnnouncementDataService {
     create(data) {
         return http.post("/announcements", data);
     }
-    findAll(classCode) {
+    findOne(classCode) {
         return http.get("/announcements", classCode);
     }
     moss(language){

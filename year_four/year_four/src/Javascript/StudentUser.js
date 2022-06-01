@@ -71,14 +71,13 @@ class StudentUser extends React.Component {
                                     </div>
                                 </Collapsible>
 
-                                <Collapsible trigger={"Edit Coursework"}>
+                                <Collapsible trigger={"View Coursework"}>
                                     <div className={"internalCollapseDiv"}>
                                         <br/>
-
+                                        <Announcements classCode={this.state.t_code}/>
+                                        <br/>
                                     </div>
                                 </Collapsible>
-
-                                <Announcements classCode={this.state.t_code}/>
 
                             </div>
                             <br/>

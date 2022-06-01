@@ -73,17 +73,17 @@ class AdminUser extends React.Component {
 
     componentDidMount(){
 
-        let classes = async () => {
-            try {
-                const request = await axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello");
-                console.log(request.data);
-                let classData = request.data;
-
-            } catch (error){
-                alert(error);
-            }
-        };
-        classes();
+        // let classes = async () => {
+        //     try {
+        //         const request = await axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello");
+        //         console.log(request.data);
+        //         let classData = request.data;
+        //
+        //     } catch (error){
+        //         alert(error);
+        //     }
+        // };
+        // classes();
 
 
         let coll = document.getElementsByClassName("collapsible");

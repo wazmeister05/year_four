@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import AnnouncementDataService from "../announcement.service";
+import { Buffer } from "buffer";
+
 
 export default class Announcements extends Component {
     constructor(props) {
@@ -10,7 +12,7 @@ export default class Announcements extends Component {
         this.setActiveClass = this.setActiveClass.bind(this);
         this.searchTitle = this.searchTitle.bind(this);
         this.state = {
-            content: [],
+            content: "",
             classChosen: {},
             line: ""
         };
@@ -25,48 +27,51 @@ export default class Announcements extends Component {
 
     retrieveClasses() {
         let classCode = this.props.classCode;
-        console.log(classCode);
-        AnnouncementDataService.findAll(classCode)
+        AnnouncementDataService.findOne(classCode)
             .then(response => {
-                this.setState({
-                    content: response.data
-                });
-                this.presentClass();
+                const base64String = response.data[0].announcementText;
+                const actualBase64String = Buffer.from(base64String, 'utf8').toString('utf8');
+
+                this.setState(() => ({
+                    content: actualBase64String
+                }), () => {
+                    document.getElementById("content").data = actualBase64String;
+                })
             })
             .catch(e => {
                 console.log(e);
             });
     }
 
-    presentClass(){
-        let classes = this.state.content;
-
-        let mostRecentDate = 0;
-        let mostRecentClass = {};
-        console.log(classes);
-        classes.forEach((class1) => {
-            if(class1.classCode === this.props.classCode) {
-                if(class1.announcementDate > mostRecentDate) {
-                    mostRecentClass = class1;
-                    mostRecentDate = class1.announcementDate;
-                }
-            }
-        });
-
-        this.setState({
-            classChosen: mostRecentClass
-        });
-
-        let text = document.createElement("text");
-        text.textContent = mostRecentClass.announcementText;
-
-        let img = document.createElement("img");
-        img.src = mostRecentClass.image;
-
-        document.getElementById("content").appendChild(text);
-        document.getElementById("content").appendChild(img);
-
-    }
+    // presentClass(){
+    //     let classes = this.state.content;
+    //
+    //     let mostRecentDate = 0;
+    //     let mostRecentClass = {};
+    //     console.log(classes);
+    //     classes.forEach((class1) => {
+    //         if(class1.classCode === this.props.classCode) {
+    //             if(class1.announcementDate > mostRecentDate) {
+    //                 mostRecentClass = class1;
+    //                 mostRecentDate = class1.announcementDate;
+    //             }
+    //         }
+    //     });
+    //
+    //     this.setState({
+    //         classChosen: mostRecentClass
+    //     });
+    //
+    //     let text = document.createElement("text");
+    //     text.textContent = mostRecentClass.announcementText;
+    //
+    //     let img = document.createElement("img");
+    //     img.src = mostRecentClass.image;
+    //
+    //     document.getElementById("content").appendChild(text);
+    //     document.getElementById("content").appendChild(img);
+    //
+    // }
 
     refreshList() {
         this.retrieveClasses();
@@ -98,13 +103,15 @@ export default class Announcements extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <button onClick={() => {this.retrieveClasses();}} className={"btn btn-success"}>Update {this.props.classCode} coursework</button>
-                    <div id={"content"}> </div>
-                </div>
+            <>
+                <button onClick={() => {
+                    this.retrieveClasses();
+                }} className={"btn btn-success"}>Update {this.props.classCode} coursework
+                </button>
                 <br/>
-            </div>
+                <object id={"content"} type="application/pdf" width="100%" height="842pt" />
+                <br/>
+            </>
         );
     }
 }

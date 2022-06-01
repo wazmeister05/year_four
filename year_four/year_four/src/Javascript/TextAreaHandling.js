@@ -4,30 +4,43 @@ import AnnouncementDataService from "../Database/announcement.service";
 export default class TextAreaHandling extends Component {
     constructor(props) {
         super(props);
-        this.onChangeText = this.onChangeText.bind(this);
-        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeFile = this.onChangeFile.bind(this);
         this.onChangeClass = this.onChangeClass.bind(this);
         this.saveAnnouncement = this.saveAnnouncement.bind(this);
         this.state = {
             id: null,
-            image: null,
             announcementText: "",
             classCode: this.props.classCode,
             announcementDate: ""
         };
     }
 
-    onChangeImage(e){
-        this.setState({
-           image: e.target.value
-        });
+    onChangeFile(e){
+        //Read File
+        const scope = this;
+        let base64 = "";
+        let selectedFile = document.getElementById("inputFile").files;
+        //Check File is not Empty
+        if (selectedFile.length > 0) {
+            // Select the very first file from list
+            let fileToLoad = selectedFile[0];
+            // FileReader function for read the file.
+            let fileReader = new FileReader();
+
+            // Onload of file read the file content
+            fileReader.onload = function(fileLoadedEvent) {
+                base64 = fileLoadedEvent.target.result;
+                // Print data in console
+                scope.setState({
+                    announcementText: base64
+                });
+            };
+            // Convert data to base64
+            fileReader.readAsDataURL(fileToLoad);
+        }
     }
 
-    onChangeText(e) {
-        this.setState({
-            announcementText: e.target.value
-        });
-    }
+
     onChangeClass(e) {
         this.setState({
             classCode: e.target.value
@@ -36,17 +49,16 @@ export default class TextAreaHandling extends Component {
 
     saveAnnouncement() {
         let data = {
-            announcementText: this.state.announcementText.toLowerCase(),
+            announcementText: this.state.announcementText,
             classCode: this.props.classCode,
-            image: this.state.image,
             announcementDate: Date.now().toString()
         };
+        console.log(data.announcementText);
         AnnouncementDataService.create(data)
             .then(response => {
                 this.setState({
                     id: response.data.id,
                     announcementText: response.data.announcementText,
-                    image: response.data.image,
                     classCode: response.data.classCode,
                     announcementDate: response.data.announcementDate
                 });
@@ -57,28 +69,10 @@ export default class TextAreaHandling extends Component {
             });
     }
 
-    // searchAll() {
-    // AnnouncementDataService.findAll(this.state.searchTitle)
-    //     .then(response => {
-    //         this.setState({
-    //             classes: response.data
-    //         });
-    //         console.log(response.data);
-    //     })
-    //     .catch(e => {
-    //         console.log(e);
-    //     });
-    // }
-
     render() {
         return (
             <div>
-                <div>
-                <textarea id={"announcementBox"}
-                          onChange={this.onChangeText}
-                          placeholder="Type in here"/>
-                </div>
-                <input type="file" onChange={this.onChangeImage} id="image-input" accept="image/jpeg, image/png, image/jpg" />
+                <input type="file" onChange={this.onChangeFile} id="inputFile" max={} accept="application/pdf" />
                 <button type={"submit"} className="btn btn-success" id={"submitTextArea"} onClick={this.saveAnnouncement}>Submit</button>
                 <br/>
                 <br/>

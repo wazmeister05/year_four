@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
-import { FilePond, registerPlugin } from "react-filepond";
-import "filepond/dist/filepond.min.css";
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+// import { FilePond, registerPlugin } from "react-filepond";
+// import "filepond/dist/filepond.min.css";
+// import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+// import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+// import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import {Input, InputGroup, InputGroupText} from "reactstrap";
 import CourseworkDataService from "../coursework.service";
 
 // Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+// registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 // Our app
 export class AddCourseworkComponent extends Component {
@@ -17,7 +17,10 @@ export class AddCourseworkComponent extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.state = {
             title: "",
-            files: null
+            // files: null,
+            content: "",
+            files: "",
+            teacher: "test",
         };
     }
 
@@ -27,31 +30,47 @@ export class AddCourseworkComponent extends Component {
         });
     }
 
-    handleInit() {
-        console.log("FilePond instance has initialised", this.state.files);
-    }
+    // handleInit() {
+    //     console.log("FilePond instance has initialised", this.state.files);
+    // }
 
-    upload(){
-        this.saveCoursework();
-        window.alert("Uploaded");
-        console.log(this.state.files);
-        console.log(typeof this.state.files);
-        // Now clear the current component
-        this.setState({files:null});
-        this.pond.removeFiles();
-    }
+    // retrieveAssignments() {
+    //     CourseworkDataService.get(this.props.courseCode)
+    //         .then(response => {
+    //             this.setState({
+    //                 classes: response.data
+    //             });
+    //             console.log(response.data);
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
 
-    retrieveAssignments() {
-        CourseworkDataService.get(this.props.courseCode)
-            .then(response => {
-                this.setState({
-                    classes: response.data
+    onChangeFile(e){
+        const scope = this;
+        let base64 = "";
+        let selectedFile = document.getElementById("inputFile").files;
+        //Check File is not Empty
+        if (selectedFile.length > 0) {
+            // Select the very first file from list
+            let fileToLoad = selectedFile[0];
+            // FileReader function for read the file.
+            let fileReader = new FileReader();
+
+            // Onload of file read the file content
+            fileReader.onload = function(fileLoadedEvent) {
+                base64 = fileLoadedEvent.target.result;
+                // Print data in console
+                scope.setState({
+                    content: base64
                 });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+                console.log(this.state.content);
+                console.log(typeof this.state.content);
+            };
+            // Convert data to base64
+            fileReader.readAsDataURL(fileToLoad);
+        }
     }
 
     // TODO: problem with this...
@@ -59,8 +78,8 @@ export class AddCourseworkComponent extends Component {
         let data = {
             title: this.state.title.toLowerCase(),
             courseCode: this.props.courseCode,
-            content: JSON.stringify(this.state.files),
-            teacher: this.props.teacher.toLowerCase()
+            content: this.state.content,
+            teacher: this.state.teacher
         };
         CourseworkDataService.create(data)
             .then(response => {
@@ -76,6 +95,9 @@ export class AddCourseworkComponent extends Component {
             .catch(e => {
                 console.log("PROBLEM " + e.toString());
             });
+
+        // this.setState({files:null});
+
     }
 
     render() {
@@ -87,23 +109,27 @@ export class AddCourseworkComponent extends Component {
                     <Input type={"text"} className={"form-control"} name={"titleIN"} pattern={"\d*"}
                            required value={this.state.title} onChange={this.onChangeTitle} placeholder={"Enter Title..."} />
                 </InputGroup><br/>
-                <FilePond
-                    ref={ref => (this.pond = ref)}
-                    allowMultiple={false}
-                    allowReorder={true}
-                    maxFiles={1}
-                    instantUpload={false}
-                    name="files"
-                    oninit={() => this.handleInit()}
-                    onupdatefiles={fileItems => {
-                        // Set currently active file objects to this.state
-                        this.setState({
-                            files: fileItems.map(fileItem => fileItem.file)
-                            });
-                        }
-                    }
-                />
-                <button type="button" onClick={() => this.upload()} className="btn btn-success">Upload</button>
+                <InputGroup>
+                    <Input type="file" onChange={this.onChangeFile} id="inputFile" />
+                </InputGroup><br/>
+
+                {/*<FilePond*/}
+                {/*    ref={ref => (this.pond = ref)}*/}
+                {/*    allowMultiple={false}*/}
+                {/*    allowReorder={true}*/}
+                {/*    maxFiles={1}*/}
+                {/*    instantUpload={false}*/}
+                {/*    name="files"*/}
+                {/*    // oninit={() => this.handleInit()}*/}
+                {/*    onupdatefiles={fileItems => {*/}
+                {/*        // Set currently active file objects to this.state*/}
+                {/*        this.setState({*/}
+                {/*            files: fileItems.map(fileItem => fileItem.file)*/}
+                {/*            });*/}
+                {/*        }*/}
+                {/*    }*/}
+                {/*/>*/}
+                <button type="button" onClick={() => this.saveCoursework()} className="btn btn-success">Upload</button>
             </div>
         );
     }
