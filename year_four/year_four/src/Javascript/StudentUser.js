@@ -6,8 +6,8 @@ import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
 import {Dropdown} from "react-bootstrap";
 import Collapsible from 'react-collapsible';
-import {AddCourseworkComponent} from "../Database/components/add-coursework.component";
 import Announcements from '../Database/components/announcement.component.js';
+import FileUpload from "./FileUpload";
 
 let coll = document.getElementsByClassName("collapsible");
 let i;
@@ -30,7 +30,8 @@ class StudentUser extends React.Component {
         super(props);
         this.state = {
             t_code: "Select Class",
-            t_chosen: false
+            t_chosen: false,
+            t_type: "student"
         };
     }
 
@@ -66,7 +67,10 @@ class StudentUser extends React.Component {
                                 <Collapsible trigger={"Upload Coursework"}>
                                     <div className={"internalCollapseDiv"}>
                                         <br/>
-                                        <AddCourseworkComponent />
+                                        <h6>Please name file in the format [username][submission name][class code]</h6>
+                                        <h4>Failure to do so will result in 0 marks</h4>
+                                        <br/>
+                                        <FileUpload classCode={this.state.t_code} type={"submission"} user={this.state.t_type}/>
                                         <br/>
                                     </div>
                                 </Collapsible>
@@ -75,10 +79,10 @@ class StudentUser extends React.Component {
                                     <div className={"internalCollapseDiv"}>
                                         <br/>
                                         <Announcements classCode={this.state.t_code}/>
+
                                         <br/>
                                     </div>
                                 </Collapsible>
-
                             </div>
                             <br/>
                         </div>

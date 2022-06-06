@@ -62,11 +62,6 @@ class AdminUser extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <button onClick={() =>
-                    axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello").then((response) => {
-                        console.log(response.data);})}>Connected?
-                </button>
             </div>
         )
     }

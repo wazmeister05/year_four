@@ -5,10 +5,11 @@ import 'jquery/dist/jquery.min.js';
 import '../css/Stylesheet.css';
 import NavbarPanel from "./NavbarPanel";
 import {Dropdown} from "react-bootstrap";
-import TextAreaHandle from "./TextAreaHandling";
 import Collapsible from 'react-collapsible';
 import AddUserComponent from "../Database/components/add-user.component";
 import Submissions from "./Submissions";
+import FileUpload from "./FileUpload";
+import axios from "axios";
 
 
 let coll = document.getElementsByClassName("collapsible");
@@ -32,7 +33,8 @@ class TeacherUser extends React.Component {
         super(props);
         this.state = {
             t_code: "Select Class",
-            t_chosen: false
+            t_chosen: false,
+            t_type: "teacher"
         };
     }
 
@@ -41,6 +43,42 @@ class TeacherUser extends React.Component {
         this.setState({t_chosen: true});
         document.getElementById("headerTitleTeacher").innerText = course;
         document.getElementById("selectClassFirst").style.opacity = "100";
+    }
+
+    async runPlag(){
+        console.log(document.getElementById("ext").value);
+        await axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/hello",
+            { params: { classCode: this.state.t_code, ext: document.getElementById("ext").value } })
+            .then((response) => {
+                let url = response.data.message;
+                const index = url.indexOf('http');
+                url = url.slice(index-1);
+
+                const disable = document.querySelector('.disabled');
+                disable.href= url;
+                console.log(response.data);})
+    }
+
+    async student(){
+        const FileDownload = require('js-file-download');
+        // await axios.get("https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/getSubmissions",
+        //     { params: { classCode: this.state.t_code, ext: document.getElementById("ext").value } })
+        //     .then((response) => {
+        //         let url = response.data.message;
+        //         const index = url.indexOf('http');
+        //         url = url.slice(index-1);
+        //
+        //         const disable = document.querySelector('.disabled');
+        //         disable.href= url;
+        //         console.log(response.data);})
+        await axios({
+            url: "https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/getSubmissions", //your url
+            method: 'GET',
+            params: {classCode: this.state.t_code},
+            responseType: 'blob', // important
+        }).then((response) => {
+            FileDownload(response.data, this.state.t_code + 'submissions.zip');
+        });
     }
 
     render() {
@@ -64,23 +102,53 @@ class TeacherUser extends React.Component {
                     <div className={"container"} style={{marginTop: "2%"}}>
                         <div id={"selectClassFirst"}>
                         <div className={"d-grid gap-2"}>
+                            <Collapsible trigger={"Plagiarism Check"}>
+                                <div className={"internalCollapseDiv"}>
+                                    <br/>
+                                    <select id="ext">
+                                        <option value="java">Java</option>
+                                        <option value="python">Python</option>
+                                        <option value="c" disabled>C</option>
+                                        <option value="c++" disabled>C++</option>
+                                        <option value="c#" disabled>C#</option>
+                                        <option value="javascript" disabled>Javascript</option>
+                                        <option value="fortran" disabled>FORTRAN</option>
+                                        <option value="ml" disabled>ML</option>
+                                        <option value="haskell" disabled>Haskell</option>
+                                        <option value="lisp" disabled>Lisp</option>
+                                        <option value="scheme" disabled>Scheme</option>
+                                        <option value="pascal" disabled>Pascal</option>
+                                        <option value="modula2" disabled>Modula2</option>
+                                        <option value="ada" disabled>Ada</option>
+                                        <option value="perl" disabled>Perl</option>
+                                        <option value="tcl" disabled>TCL</option>
+                                        <option value="matlab" disabled>Matlab</option>
+                                        <option value="vdhl" disabled>VHDL</option>
+                                        <option value="verilog" disabled>Verilog</option>
+                                        <option value="spice" disabled>Spice</option>
+                                        <option value="hcl2" disabled>HCL2</option>
+                                    </select><br/><br/>
+                                    <button onClick={() => {this.runPlag()}}>
+                                        Run Plagiarism Detector
+                                    </button>
+                                    <br/>
+                                    <a href={"javascript:alert('Run the plagiarism checker first')"} target="_blank" class={"disabled"} id={"plagRes"}>Results</a>
+                                    <br/>
+                                </div>
+                            </Collapsible>
                             <Collapsible trigger={"Add New Coursework"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
-                                    <TextAreaHandle classCode={this.state.t_code}/>
+                                    <h6>Please name file in the format [submission name][class code].pdf</h6>
+                                    <FileUpload classCode={this.state.t_code} type={"assignment"} user={this.state.t_type}/>
                                 </div>
                             </Collapsible>
-
-                            <Collapsible trigger={"Edit Coursework"}>
+                            <Collapsible trigger={"Download Student Submissions"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>
-
-                                </div>
-                            </Collapsible>
-                            <Collapsible trigger={"View Student Submissions"}>
-                                <div className={"internalCollapseDiv"}>
-                                    <br/>
-                                    <Submissions />
+                                    <button onClick={() => {this.student()}}>
+                                        Download
+                                    </button>
                                 </div>
                             </Collapsible>
                             <Collapsible trigger={"Add Student to Course"}>
@@ -95,12 +163,7 @@ class TeacherUser extends React.Component {
 
                                 </div>
                             </Collapsible>
-                            <Collapsible trigger={"Add Student to System"}>
-                                <div className={"internalCollapseDiv"}>
-                                    <br/>
-                                    <AddUserComponent role={"student"}/>
-                                </div>
-                            </Collapsible>
+
                             <Collapsible trigger={"Change Student Pairings"}>
                                 <div className={"internalCollapseDiv"}>
                                     <br/>

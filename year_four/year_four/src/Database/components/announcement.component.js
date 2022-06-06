@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import AnnouncementDataService from "../announcement.service";
 import { Buffer } from "buffer";
+import axios from "axios";
 
 
 export default class Announcements extends Component {
@@ -25,53 +26,20 @@ export default class Announcements extends Component {
         });
     }
 
-    retrieveClasses() {
-        let classCode = this.props.classCode;
-        AnnouncementDataService.findOne(classCode)
-            .then(response => {
-                const base64String = response.data[0].announcementText;
-                const actualBase64String = Buffer.from(base64String, 'utf8').toString('utf8');
 
-                this.setState(() => ({
-                    content: actualBase64String
-                }), () => {
-                    document.getElementById("content").data = actualBase64String;
-                })
-            })
-            .catch(e => {
-                console.log(e);
-            });
+
+    async retrieveClasses() {
+        const FileDownload = require('js-file-download');
+        let aclassCode = this.props.classCode;
+        await axios({
+            url: "https://devweb2021.cis.strath.ac.uk/qhb18155-nodejs/getCoursework", //your url
+            method: 'GET',
+            params: {classCode: aclassCode},
+            responseType: 'blob', // important
+        }).then((response) => {
+            FileDownload(response.data, 'assignment.pdf');
+        });
     }
-
-    // presentClass(){
-    //     let classes = this.state.content;
-    //
-    //     let mostRecentDate = 0;
-    //     let mostRecentClass = {};
-    //     console.log(classes);
-    //     classes.forEach((class1) => {
-    //         if(class1.classCode === this.props.classCode) {
-    //             if(class1.announcementDate > mostRecentDate) {
-    //                 mostRecentClass = class1;
-    //                 mostRecentDate = class1.announcementDate;
-    //             }
-    //         }
-    //     });
-    //
-    //     this.setState({
-    //         classChosen: mostRecentClass
-    //     });
-    //
-    //     let text = document.createElement("text");
-    //     text.textContent = mostRecentClass.announcementText;
-    //
-    //     let img = document.createElement("img");
-    //     img.src = mostRecentClass.image;
-    //
-    //     document.getElementById("content").appendChild(text);
-    //     document.getElementById("content").appendChild(img);
-    //
-    // }
 
     refreshList() {
         this.retrieveClasses();
@@ -106,7 +74,7 @@ export default class Announcements extends Component {
             <>
                 <button onClick={() => {
                     this.retrieveClasses();
-                }} className={"btn btn-success"}>Update {this.props.classCode} coursework
+                }} className={"btn btn-success"}>Download {this.props.classCode} coursework
                 </button>
                 <br/>
                 <object id={"content"} type="application/pdf" width="100%" height="842pt" />
